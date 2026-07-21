@@ -1,0 +1,66 @@
+<!-- @dsCard group="Components" viewport="700x280" name="Data — KPICard · Delta · Sparkline" subtitle="KPI grid · delta indicators · sparkline variants" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .section { margin-bottom: 18px; }
+  .section-label { font-size: 10px; font-weight: 600; color: var(--fg4); font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { KPICard, Delta, Sparkline } = window.DesignSystem_7929a3;
+
+const T1 = [820,880,760,940,910,1020,970,1080,1140,1090,1180,1240,1220,1280];
+const T2 = [120,140,138,160,170,182,205,210,228,240,250,260,272,284];
+const T3 = [3.2,3.4,3.5,3.7,3.6,3.9,4.0,4.2,4.4,4.5,4.6,4.7,4.8,4.82];
+const T4 = [10.2,9.9,9.6,9.4,9.5,9.2,9.1,8.9,8.7,8.6,8.4,8.3,8.2,8.20];
+
+function Preview() {
+  return (
+    <div>
+      <div class="section">
+        <div class="section-label">KPI Grid (4 columnas · una destacada con accent)</div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:12}}>
+          <KPICard label="Inversión"    prefix="€" value="1.28M" delta={12.4}  data={T1}/>
+          <KPICard label="Conversiones"            value="2,184" delta={8.1}   data={T2} accent/>
+          <KPICard label="ROAS medio"  suffix="×"  value="4.82"  delta={4.0}   data={T3}/>
+          <KPICard label="CPL"          prefix="€" value="8.20"  delta={-3.1}  data={T4} invert/>
+        </div>
+      </div>
+      <div class="section" style={{display:'flex',gap:24,alignItems:'center',marginBottom:0}}>
+        <div>
+          <div class="section-label">Delta</div>
+          <div style={{display:'flex',gap:14,alignItems:'center'}}>
+            <Delta value={12.4}/>
+            <Delta value={-3.1}/>
+            <Delta value={-3.1} invert/>
+            <Delta value={0.0}/>
+          </div>
+        </div>
+        <div style={{flex:1}}>
+          <div class="section-label">Sparkline</div>
+          <Sparkline data={T1} height={28}/>
+        </div>
+        <div style={{flex:1}}>
+          <div class="section-label">Sin fill (comparación)</div>
+          <Sparkline data={T1} height={28} color="var(--fg2)" fill={false}/>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Preview/>);
+</script>
+</body>
+</html>

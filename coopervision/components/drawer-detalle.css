@@ -1,0 +1,232 @@
+/* ════════════════════════════════════════════════════════════════
+   CooperVision Iberia · components/drawer-detalle.css — V5
+   Estilos propios del drawer de detalle de óptica. Reutiliza el
+   contenedor .drawer / .drawer-overlay del DS (components.css §12) y
+   las pills, override-* y modal del DS. Cargar después de views.css.
+   ════════════════════════════════════════════════════════════════ */
+
+/* El drawer V5 sustituye el padding/grid internos por su propia
+   estructura header / tabs / body / footer (todo flex column). */
+.cpv-dd { padding: 0; }
+
+/* ── Header sticky ────────────────────────────────────────────── */
+.cpv-dd-head {
+  flex-shrink: 0; padding: var(--space-6) var(--space-7) var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.cpv-dd-name-row { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
+.cpv-dd-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 600;
+  letter-spacing: -.01em; line-height: 1.22; color: var(--ink); margin: 0; text-wrap: balance;
+}
+.cpv-dd-close {
+  width: 30px; height: 30px; flex-shrink: 0; margin: -3px -4px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: none; cursor: pointer; color: var(--muted);
+  border-radius: var(--radius-md); transition: var(--transition-fast);
+}
+.cpv-dd-close:hover { background: var(--line-2); color: var(--ink); }
+.cpv-dd-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
+.cpv-dd-addr {
+  display: flex; align-items: center; gap: 6px; margin-top: 9px;
+  font-size: 13px; color: var(--muted); line-height: 1.4;
+}
+.cpv-dd-addr iconify-icon { color: var(--muted-2); flex-shrink: 0; }
+
+/* ── Tabs (5) ─────────────────────────────────────────────────── */
+.cpv-dd-tabs {
+  flex-shrink: 0; display: flex; gap: 1px; padding: 0 var(--space-7);
+  border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none;
+}
+.cpv-dd-tabs::-webkit-scrollbar { display: none; }
+.cpv-dd-tab {
+  position: relative; padding: 12px 11px; font-size: 12.5px; font-weight: 500;
+  color: var(--muted); border: none; background: none; cursor: pointer;
+  white-space: nowrap; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: var(--transition-fast); display: inline-flex; align-items: center; gap: 6px;
+}
+.cpv-dd-tab:hover { color: var(--ink-2); }
+.cpv-dd-tab.on { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+.cpv-dd-tab-count {
+  font-size: 10px; font-weight: 700; min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: var(--radius-full); background: var(--line-2); color: var(--muted);
+  display: inline-flex; align-items: center; justify-content: center; line-height: 1;
+}
+.cpv-dd-tab.on .cpv-dd-tab-count { background: var(--accent-soft); color: var(--accent-ink-deep); }
+
+/* ── Body scroll ──────────────────────────────────────────────── */
+.cpv-dd-body { flex: 1; overflow-y: auto; padding: var(--space-6) var(--space-7); }
+
+/* ── Footer sticky ────────────────────────────────────────────── */
+.cpv-dd-foot {
+  flex-shrink: 0; padding: var(--space-4) var(--space-7);
+  border-top: 1px solid var(--line); display: flex; align-items: center;
+  gap: var(--space-3); justify-content: flex-end; background: var(--card);
+}
+.cpv-dd-foot .btn { white-space: nowrap; }
+
+/* ════ Grupos de campos label-valor ════ */
+.cpv-group { margin-bottom: var(--space-6); }
+.cpv-group:last-child { margin-bottom: 0; }
+.cpv-group-eyebrow {
+  display: flex; align-items: center; gap: 10px; margin-bottom: var(--space-2);
+  font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+}
+.cpv-group-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--line-2); }
+
+.cpv-field {
+  display: grid; grid-template-columns: 128px 1fr; gap: var(--space-4);
+  padding: 8px 0; align-items: start;
+}
+.cpv-field + .cpv-field { border-top: 1px solid var(--line-2); }
+.cpv-field-label { font-size: 12px; color: var(--muted); padding-top: 2px; line-height: 1.4; }
+.cpv-field-value {
+  font-size: 13.5px; color: var(--ink); min-width: 0; line-height: 1.45;
+  display: flex; flex-direction: column; gap: 3px; word-break: break-word;
+}
+.cpv-field-value.is-empty { color: var(--muted-2); }
+.cpv-field-main { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cpv-field-edit {
+  width: 22px; height: 22px; flex-shrink: 0; border: none; background: none; cursor: pointer;
+  color: var(--muted-2); border-radius: var(--radius-sm); display: inline-flex;
+  align-items: center; justify-content: center; opacity: 0; transition: var(--transition-fast);
+}
+.cpv-field:hover .cpv-field-edit { opacity: 1; }
+.cpv-field-edit:hover { background: var(--accent-soft); color: var(--accent-ink-deep); }
+
+/* Línea de valor original (override §8.6) */
+.cpv-orig { font-size: 11px; color: var(--muted); }
+.cpv-orig::before { content: '↳ '; color: var(--muted-2); }
+.cpv-orig s { color: var(--muted-2); }
+.cpv-orig b { font-weight: 600; color: var(--ink-2); }
+
+/* Link externo */
+.cpv-extlink { display: inline-flex; align-items: center; gap: 4px; border-bottom-color: var(--accent-soft); }
+.cpv-extlink iconify-icon { color: var(--muted-2); }
+
+/* Identificadores mono + copy */
+.cpv-mono { font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+.cpv-copy {
+  width: 22px; height: 22px; flex-shrink: 0; border: 1px solid var(--line); background: var(--card);
+  cursor: pointer; color: var(--muted); border-radius: var(--radius-sm); display: inline-flex;
+  align-items: center; justify-content: center; transition: var(--transition-fast);
+}
+.cpv-copy:hover { background: var(--line-2); color: var(--ink); border-color: var(--muted-2); }
+
+/* Chips de valores (subtypes, segmentación…) */
+.cpv-valchips { display: flex; flex-wrap: wrap; gap: 5px; }
+.cpv-valchip {
+  padding: 2px 8px; border-radius: var(--radius-sm); background: var(--line-2);
+  color: var(--ink-2); font-size: 11px; font-weight: 500; white-space: nowrap;
+}
+
+/* Estrellas reputación */
+.cpv-stars { letter-spacing: 1px; }
+.cpv-stars .cpv-star { color: #E0B600; font-size: 13px; }
+.cpv-stars .cpv-star.off { color: var(--line); }
+
+/* Horario */
+.cpv-hours { display: flex; flex-direction: column; gap: 2px; }
+.cpv-hours span { font-size: 12.5px; color: var(--ink-2); }
+
+/* ════ Tab 3 · Overrides activos ════ */
+.cpv-sub-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 var(--space-3);
+}
+.cpv-ov-card {
+  border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: var(--space-4); margin-bottom: var(--space-3);
+}
+.cpv-ov-top { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.cpv-ov-icon { color: var(--warn-ink); display: flex; }
+.cpv-ov-field { font-size: 13px; font-weight: 600; color: var(--ink); }
+.cpv-ov-table { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.cpv-ov-change { font-size: 13px; color: var(--ink); margin-bottom: 4px; }
+.cpv-ov-change s { color: var(--muted-2); }
+.cpv-ov-meta { font-size: 11.5px; color: var(--muted); }
+.cpv-ov-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-top: 10px; }
+.cpv-ov-motivo { font-size: 11.5px; color: var(--ink-2); font-style: italic; flex: 1; min-width: 0; }
+
+/* ════ Tab 3 · Timeline ════ */
+.cpv-timeline { display: flex; flex-direction: column; }
+.cpv-tl {
+  display: grid; grid-template-columns: 26px 1fr; gap: 11px;
+  padding-bottom: var(--space-5); position: relative;
+}
+.cpv-tl:not(:last-child)::before {
+  content: ''; position: absolute; left: 12px; top: 25px; bottom: -1px; width: 1px; background: var(--line-2);
+}
+.cpv-tl-icon {
+  width: 25px; height: 25px; border-radius: var(--radius-full); display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; background: var(--line-2);
+}
+.cpv-tl-icon.info  { background: var(--accent-soft); color: var(--accent-ink-deep); }
+.cpv-tl-icon.warn  { background: var(--warn-bg);     color: var(--warn-ink); }
+.cpv-tl-icon.pos   { background: var(--pos-soft);    color: var(--pos-ink); }
+.cpv-tl-icon.neg   { background: var(--neg-soft);    color: var(--neg-ink); }
+.cpv-tl-icon.accent{ background: var(--accent-soft); color: var(--accent-ink-deep); }
+.cpv-tl-icon.muted { background: var(--line-2);      color: var(--muted); }
+.cpv-tl-body { padding-top: 1px; min-width: 0; }
+.cpv-tl-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.cpv-tl-title { font-size: 13px; font-weight: 500; color: var(--ink); }
+.cpv-tl-date { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cpv-tl-detail { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+.cpv-tl-detail s { color: var(--muted-2); }
+.cpv-tl-user { color: var(--ink-2); font-weight: 500; }
+
+.cpv-dd-morewrap { display: flex; align-items: center; gap: var(--space-4); margin-top: 2px; }
+.cpv-dd-morewrap .btn { flex-shrink: 0; }
+.cpv-tl-changelog { font-size: 12px; }
+
+/* ════ Tab 4 · App ════ */
+.cpv-notas-ro {
+  font-size: 13.5px; color: var(--ink-2); line-height: 1.55; white-space: pre-wrap;
+  padding: var(--space-3) 0;
+}
+.cpv-cadena-empty { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+
+/* ════ Tab 5 · Estado y campañas ════ */
+.cpv-toggle-row {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--space-5); padding: 12px 0;
+}
+.cpv-toggle-row + .cpv-toggle-row { border-top: 1px solid var(--line-2); }
+.cpv-toggle-info { min-width: 0; }
+.cpv-toggle-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+.cpv-toggle-desc { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.45; }
+.cpv-context-note {
+  font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: var(--space-4);
+  padding: 10px 12px; background: var(--line-2); border-radius: var(--radius-md);
+}
+
+.cpv-danger {
+  border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3);
+}
+.cpv-danger-head { display: flex; align-items: center; gap: 7px; color: var(--neg-ink); }
+.cpv-danger-title { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.cpv-danger .btn { justify-content: flex-start; width: 100%; }
+
+/* ════ Estado loading / no encontrada ════ */
+.cpv-dd-skhead { flex-shrink: 0; padding: var(--space-6) var(--space-7) var(--space-4); border-bottom: 1px solid var(--line); }
+.cpv-dd-notfound {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: var(--space-4); padding: var(--space-8);
+}
+
+/* ════ Modal Corregir dato — campos extra ════ */
+.cpv-cor-readonly {
+  display: flex; flex-direction: column; gap: 8px; padding: var(--space-4);
+  background: var(--line-2); border-radius: var(--radius-md); margin-bottom: var(--space-5);
+}
+.cpv-cor-ro-row { display: flex; align-items: baseline; gap: 10px; font-size: 13px; }
+.cpv-cor-ro-label { width: 110px; flex-shrink: 0; color: var(--muted); font-size: 12px; }
+.cpv-cor-ro-val { color: var(--ink); min-width: 0; word-break: break-word; }
+.cpv-cor-ro-val.mono { font-family: var(--font-mono); font-size: 12px; }
+.cpv-cor-note {
+  display: flex; gap: 9px; padding: 11px 13px; margin-top: var(--space-5);
+  background: var(--warn-bg); color: var(--warn-ink); border-radius: var(--radius-md);
+  font-size: 12px; line-height: 1.5;
+}
+.cpv-cor-note iconify-icon { flex-shrink: 0; margin-top: 1px; }

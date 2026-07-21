@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CooperVision Iberia · BBDD Ópticas</title>
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="views/views.css">
+  <link rel="stylesheet" href="views/styleguide.css">
+  <link rel="stylesheet" href="components/drawer-detalle.css">
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+
+  <!-- Leaflet (solo para V3 Mapa · excepción aprobada en spec: es el mapa, no un chart) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <style id="proto-glue">
+    /* ── Glue específico del prototipo (no forma parte del DS) ── */
+    #view-root { max-width: 1440px; margin: 0 auto; }
+    .view-stub { margin-top: var(--space-6); }
+
+    /* Ocultar la barra de scroll de página (mantiene scroll funcional).
+       Las cards con datos (.table-wrap, drawer) conservan su scrollbar. */
+    .main-content { scrollbar-width: none; -ms-overflow-style: none; }
+    .main-content::-webkit-scrollbar { width: 0; height: 0; }
+
+    /* Visibilidad por rol: oculta zonas admin cuando rol = user */
+    body[data-role="user"] [data-admin-only] { display: none !important; }
+
+    /* Divisor DEV: rail-divider con etiqueta */
+    .rail-divider.is-dev .rail-divider-label { color: var(--muted-2); }
+
+    /* Wrapper relativo para el flyout de Admin */
+    .rail-admin { position: relative; width: 100%; display: flex; justify-content: center; }
+
+    /* Chrome off (login): oculta topbar prototipo y rail */
+    body[data-chrome="off"] .proto-topbar,
+    body[data-chrome="off"] .rail { display: none; }
+
+    /* ── Login split-screen ── */
+    #view-root[data-route="/login"] { max-width: none; margin: 0; padding: 0; height: 100%; overflow: hidden; }
+
+    .login-split { display: flex; height: 100%; min-height: 100%; }
+
+    /* Panel izquierdo (hero oscuro) */
+    .login-left {
+      flex: 1 1 56%;
+      position: relative; overflow: hidden;
+      background: var(--ink);
+      color: #fff;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 36px 56px;
+    }
+    .login-left::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(58% 48% at 80% 36%, rgba(197,232,23,.30), rgba(197,232,23,0) 68%);
+    }
+    .login-left > * { position: relative; z-index: 1; }
+
+    .login-left-brand { display: flex; align-items: center; gap: 12px; }
+    .login-logo {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: #fff; border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-logo img { width: 26px; height: 26px; object-fit: contain; display: block; }
+    .login-brand-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.01em; line-height: 1.1; color: #fff; }
+    .login-brand-sub { font-size: 12px; color: rgba(255,255,255,.52); margin-top: 2px; }
+
+    .login-left-hero { max-width: 660px; }
+    .login-hero-title { font-family: var(--font-display); font-weight: 800; font-size: 76px; line-height: .98; letter-spacing: -.03em; color: #fff; margin: 0; max-width: 600px; }
+    .login-hero-dot { color: var(--accent); }
+    .login-hero-sub { margin: 22px 0 0; font-size: 17px; line-height: 1.5; color: rgba(255,255,255,.60); max-width: 600px; }
+
+    .login-left-foot { font-size: 12px; color: rgba(255,255,255,.40); }
+
+    /* Panel derecho (formulario) */
+    .login-right { flex: 1 1 44%; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 40px; }
+    .login-form { width: 100%; max-width: 400px; }
+    .login-form-title { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -.02em; color: var(--ink); margin: 0 0 28px; }
+    .login-forgot-link { display: block; text-align: right; font-size: 12px; color: var(--muted); text-decoration: none; margin: 6px 0 var(--space-6); transition: color var(--transition-fast); }
+    .login-forgot-link:hover { color: var(--ink-2); text-decoration: none; }
+    .login-divider { height: 1px; background: var(--line-2); margin: 26px 0 16px; }
+    .login-builtby { font-size: 12px; color: var(--muted); }
+    .login-builtby strong { color: var(--ink-2); font-weight: 700; }
+
+    @media (max-width: 1100px) {
+      .login-hero-title { font-size: 60px; }
+    }
+
+    /* Stub KPI para estado loading */
+    .stub-kpi { display: flex; flex-direction: column; gap: var(--space-3); min-height: 86px; }
+
+    /* ── Footer global del prototipo ── */
+    .proto-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--space-5);
+      margin-top: var(--space-8);
+      font-size: 13px; line-height: 1.5;
+      color: var(--ink-2);
+    }
+    .proto-footer b { color: var(--ink); font-weight: 700; }
+    .proto-footer-meta { color: var(--muted-2); white-space: nowrap; }
+  </style>
+</head>
+<body data-role="admin" data-screen-state="default" data-chrome="on">
+
+  <!-- ── Guard <1280px ── -->
+  <div class="min-width-guard">
+    <div>
+      <iconify-icon icon="iconoir:large-suitcase" width="32" style="color:var(--muted-2)"></iconify-icon>
+      <h2 class="state-title" style="margin-top:12px">Usa esta aplicación en un escritorio</h2>
+      <p class="state-body">La herramienta está diseñada para pantallas de 1280px o superiores.</p>
+    </div>
+  </div>
+
+  <!-- ── App shell ── -->
+  <div class="app-layout">
+
+    <!-- ════ Topbar de prototipo (48px) ════ -->
+    <div class="proto-topbar">
+      <div class="proto-topbar-left">
+        <span class="proto-badge">Proto</span>
+        <span class="proto-label">Rol</span>
+        <div class="role-toggle">
+          <button class="role-toggle-btn active" data-role="admin">Admin</button>
+          <button class="role-toggle-btn" data-role="user">User</button>
+        </div>
+        <span class="proto-label" style="margin-left:4px">Estado</span>
+        <div class="segmented">
+          <button class="segmented-btn active" data-state="default">Default</button>
+          <button class="segmented-btn" data-state="loading">Loading</button>
+          <button class="segmented-btn" data-state="empty">Empty</button>
+          <button class="segmented-btn" data-state="error">Error</button>
+        </div>
+      </div>
+      <div class="proto-topbar-right">
+      </div>
+    </div>
+
+    <!-- ════ Cuerpo: rail + área principal ════ -->
+    <div class="app-body">
+
+      <!-- ════ Sidebar rail (64px) ════ -->
+      <nav class="rail" aria-label="Navegación principal">
+        <div class="rail-brand">
+          <a class="brand-mark-cpv" href="#/" aria-label="CooperVision · inicio">
+            <img class="brand-mark-cpv-img" src="assets/cpv-logo.png" alt="CooperVision" />
+          </a>
+          <span class="rail-brand-label">CooperVision</span>
+        </div>
+
+        <div class="rail-nav">
+          <a class="nav-item" href="#/" data-nav="resumen"><iconify-icon icon="iconoir:home-simple" width="20"></iconify-icon><span class="nav-label">Resumen</span><span class="tip">Resumen</span></a>
+          <a class="nav-item" href="#/bi" data-nav="bi"><iconify-icon icon="iconoir:graph-up" width="20"></iconify-icon><span class="nav-label">Business Intelligence</span><span class="tip">Business Intelligence</span></a>
+          <a class="nav-item" href="#/mapa" data-nav="mapa"><iconify-icon icon="iconoir:map-pin" width="20"></iconify-icon><span class="nav-label">Mapa</span><span class="tip">Mapa</span></a>
+          <a class="nav-item" href="#/bbdd" data-nav="bbdd"><iconify-icon icon="iconoir:database" width="20"></iconify-icon><span class="nav-label">Base de datos</span><span class="tip">Base de datos</span></a>
+        </div>
+
+        <!-- Divisor ADMIN (solo admin) -->
+        <div class="rail-divider" data-admin-only>
+          <div class="rail-divider-line"></div>
+          <div class="rail-divider-label">Admin</div>
+        </div>
+
+        <div class="rail-nav" data-admin-only>
+          <a class="nav-item" href="#/changelog" data-nav="changelog"><iconify-icon icon="iconoir:clock-rotate-right" width="20"></iconify-icon><span class="nav-label">Changelog</span><span class="tip">Changelog</span></a>
+          <div class="rail-admin">
+            <button class="nav-item" id="admin-nav" data-nav="admin" aria-haspopup="true" aria-expanded="false">
+              <iconify-icon icon="iconoir:settings" width="20"></iconify-icon><span class="nav-label">Admin</span><span class="tip">Admin</span>
+            </button>
+            <div class="admin-flyout" id="admin-flyout">
+              <div class="admin-flyout-header">Administración</div>
+              <a class="admin-flyout-item" href="#/admin/usuarios"><iconify-icon icon="iconoir:group" width="16"></iconify-icon>Usuarios</a>
+              <a class="admin-flyout-item" href="#/admin/operaciones"><iconify-icon icon="iconoir:refresh-double" width="16"></iconify-icon>Operaciones</a>
+              <a class="admin-flyout-item" href="#/admin/revision"><iconify-icon icon="iconoir:warning-circle" width="16"></iconify-icon>Revisión</a>
+              <a class="admin-flyout-item" href="#/admin/cadenas"><iconify-icon icon="iconoir:network-left" width="16"></iconify-icon>Cadenas</a>
+              <a class="admin-flyout-item" href="#/admin/logs"><iconify-icon icon="iconoir:page" width="16"></iconify-icon>Logs</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisor DEV -->
+        <div class="rail-divider is-dev">
+          <div class="rail-divider-line"></div>
+          <div class="rail-divider-label">Dev</div>
+        </div>
+
+        <div class="rail-nav">
+          <a class="nav-item" href="#/styleguide" data-nav="styleguide"><iconify-icon icon="iconoir:view-grid" width="20"></iconify-icon><span class="nav-label">Componentes</span><span class="tip">Componentes</span></a>
+        </div>
+
+        <div class="rail-spacer"></div>
+
+        <div class="rail-toggle-row">
+          <button class="rail-toggle" id="rail-toggle" type="button" aria-expanded="false" aria-label="Abrir menú" title="Plegar / abrir">
+            <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6l6 6l-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+
+        <div class="rail-bottom">
+          <a class="nav-item" href="#/login" data-nav="logout" aria-label="Cerrar sesión"><iconify-icon icon="iconoir:log-out" width="20"></iconify-icon><span class="nav-label">Cerrar sesión</span><span class="tip">Cerrar sesión</span></a>
+          <a class="nav-item" href="#/perfil" id="perfil-nav" data-nav="perfil" aria-label="Mi perfil">
+            <div class="avatar" id="rail-avatar">AS</div><span class="nav-label">Mi perfil</span><span class="tip">Mi perfil</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- ════ Área principal ════ -->
+      <main class="main-content" id="view-root">
+        <!-- Render dinámico por el router (app.js) -->
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ── Toasts ── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="data.js"></script>
+  <script src="views/charts.js"></script>
+  <script src="views/resumen.js"></script>
+  <script src="views/bi.js"></script>
+  <script src="views/mapa.js"></script>
+  <script src="views/bbdd.js"></script>
+  <script src="components/drawer-detalle.js"></script>
+  <script src="views/changelog.js"></script>
+  <script src="views/styleguide.js"></script>
+  <script src="views/sg-foundations.js"></script>
+  <script src="views/sg-components.js"></script>
+  <script src="views/sg-patterns.js"></script>
+  <script src="views/perfil.js"></script>
+  <script src="views/admin-revision.js"></script>
+  <script src="views/admin-shared.js"></script>
+  <script src="views/admin-operaciones.js"></script>
+  <script src="views/admin-usuarios.js"></script>
+  <script src="views/admin-cadenas.js"></script>
+  <script src="views/admin-logs.js"></script>
+  <script src="app.js"></script>
+  <script>
+    /* Rail colapsable (DS v3.2 Sidebar): toggle + persistencia */
+    (function () {
+      var rail = document.querySelector('.rail');
+      var btn = document.getElementById('rail-toggle');
+      if (!rail || !btn) return;
+      var KEY = 'newno:rail';
+      var open = false;
+      try { open = localStorage.getItem(KEY) === '1'; } catch (e) {}
+      function apply(o) {
+        rail.classList.toggle('is-open', o);
+        btn.setAttribute('aria-expanded', String(o));
+        btn.setAttribute('aria-label', o ? 'Plegar menú' : 'Abrir menú');
+      }
+      apply(open);
+      btn.addEventListener('click', function () {
+        open = !open;
+        apply(open);
+        try { localStorage.setItem(KEY, open ? '1' : '0'); } catch (e) {}
+      });
+    })();
+  </script>
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+#view-root .cpv-cl-dates-field { align-items: center !important }
+</style>

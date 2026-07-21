@@ -1,0 +1,96 @@
+<!-- @dsCard group="Components" viewport="700x380" name="Core — Button · Card · Badge · Input" subtitle="Primary · ghost · dark · all badge variants · input states" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .section { margin-bottom: 20px; }
+  .section-label { font-size: 10px; font-weight: 600; color: var(--fg4); font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Button, Card, Badge, Input } = window.DesignSystem_7929a3;
+const { useState } = React;
+
+function Preview() {
+  const [inputVal, setInputVal] = useState('');
+  const [searchVal, setSearchVal] = useState('');
+
+  return (
+    <div>
+      <div class="section">
+        <div class="section-label">Buttons</div>
+        <div class="row">
+          <Button variant="primary" icon={<iconify-icon icon="iconoir:plus" width="14" height="14"/>}>Nueva campaña</Button>
+          <Button variant="ghost" icon={<iconify-icon icon="iconoir:download" width="14" height="14"/>}>Exportar</Button>
+          <Button variant="ghost">Últimos 30 días <iconify-icon icon="iconoir:nav-arrow-down" width="13" height="13"/></Button>
+          <Button variant="dark">Plan Pro</Button>
+          <Button variant="primary" size="sm">Aplicar</Button>
+          <Button variant="ghost" size="sm">Cancelar</Button>
+          <Button variant="primary" disabled>Sin permisos</Button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Badges / Pills</div>
+        <div class="row">
+          <Badge variant="accent" dot>Activo</Badge>
+          <Badge variant="pos">+12.4%</Badge>
+          <Badge variant="neg">−3.1%</Badge>
+          <Badge variant="test">Test</Badge>
+          <Badge variant="paused">Pausado</Badge>
+          <Badge variant="neutral">LinkedIn</Badge>
+          <Badge variant="dark">Pro</Badge>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Cards</div>
+        <div class="row" style={{alignItems:'stretch'}}>
+          <Card style={{flex:1, minWidth:160}}>
+            <div style={{fontSize:11,fontWeight:600,color:'var(--fg4)',letterSpacing:'0.04em',textTransform:'uppercase',marginBottom:6}}>Card estándar</div>
+            <div style={{fontFamily:'var(--font-display)',fontSize:22,fontWeight:700,letterSpacing:'-0.01em'}}>€1.28M</div>
+          </Card>
+          <Card variant="accent" style={{flex:1, minWidth:160}}>
+            <div style={{fontSize:11,fontWeight:600,color:'var(--fg4)',letterSpacing:'0.04em',textTransform:'uppercase',marginBottom:6}}>Destacada (1 por vista)</div>
+            <div style={{fontFamily:'var(--font-display)',fontSize:22,fontWeight:700,letterSpacing:'-0.01em',color:'var(--accent-deep)'}}>4.82×</div>
+          </Card>
+          <Card padding="compact" style={{flex:1, minWidth:160}}>
+            <div style={{fontSize:11,fontWeight:600,color:'var(--fg4)',letterSpacing:'0.04em',textTransform:'uppercase',marginBottom:6}}>Compacta</div>
+            <div style={{fontSize:13,color:'var(--fg2)'}}>padding: 14px 16px</div>
+          </Card>
+        </div>
+      </div>
+
+      <div class="section" style={{marginBottom:0}}>
+        <div class="section-label">Inputs</div>
+        <div class="row" style={{alignItems:'flex-start'}}>
+          <div style={{flex:1, minWidth:180}}>
+            <Input label="Nombre de campaña" placeholder="Q3 · Lead-gen · Madrid" value={inputVal} onChange={setInputVal}/>
+          </div>
+          <div style={{flex:1, minWidth:180}}>
+            <Input placeholder="Buscar campañas…" icon={<iconify-icon icon="iconoir:search" width="15" height="15"/>} value={searchVal} onChange={setSearchVal}/>
+          </div>
+          <div style={{flex:1, minWidth:180}}>
+            <Input label="Email" placeholder="hola@empresa.com" value="" error="Campo obligatorio"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Preview/>);
+</script>
+</body>
+</html>

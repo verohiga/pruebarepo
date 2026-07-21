@@ -1,0 +1,85 @@
+/* ─────────────────────────────────────────────────────────────
+   CooperVision Iberia · Newno DS v3.2 · TOKENS
+   Este archivo carga el DS v3.2 (fuentes self-hosted + tokens
+   generados + clases semánticas) y expone ALIAS de compatibilidad
+   para los nombres legacy (v1.1) que usa el resto del prototipo.
+   Fuente de verdad de valores: _ds/…/_ds_bundle.css (generado).
+   ───────────────────────────────────────────────────────────── */
+
+@import url('../../_ds/newno-ds-v3-2-6f9f5432-dde5-4436-a67d-365c0d08ee02/fonts/fonts.css');
+@import url('../../_ds/newno-ds-v3-2-6f9f5432-dde5-4436-a67d-365c0d08ee02/_ds_bundle.css');
+
+:root {
+  /* ─ Alias legacy → tokens v3.2 ─ */
+  --accent-ink-deep: var(--accent-deep);
+
+  --ink:     var(--fg1);
+  --ink-2:   var(--fg2);
+  --muted:   var(--fg3);
+  --muted-2: var(--fg4);
+
+  --font-body: var(--font-ui);
+
+  --radius-xs:  var(--r-xs);
+  --radius-sm:  var(--r-sm);
+  --radius-md:  var(--r-md);
+  --radius-lg:  var(--r-lg);
+  --radius-xl:  var(--r-xl);
+  --radius-2xl: var(--r-2xl);
+  --radius-full:var(--r-full);
+
+  --shadow-focus: 0 0 0 3px var(--accent-soft);
+
+  --transition-fast: var(--dur-fast) var(--ease);
+  --transition-base: var(--dur-base) var(--ease);
+  --transition-slow: var(--dur-slow) var(--ease);
+
+  /* Semánticos sin nombre directo en v3.2 */
+  --accent-6: var(--accent-soft);
+  --neg-bg:   var(--neg-soft);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--fs-body); line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+button, input, select, textarea { font-family: inherit; }
+a { color: var(--accent-deep); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Escala tipográfica (v3.2) ─────────────────────────────── */
+/* NOTA sobre .eyebrow-t vs .eyebrow:
+   - .eyebrow-t = clase tipográfica (estilos de texto: size, weight, letter-spacing, uppercase)
+   - .eyebrow = componente flex con dot (contenedor + indicador visual)
+   Úsalas así: <span class="eyebrow-t">ÓPTICAS TOTALES</span> para labels simples.
+   Para labels con dot visual: <span class="eyebrow"><span class="dot"></span>INVERSIÓN</span>
+*/
+.display-xl { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.1;  font-weight: var(--fw-bold); letter-spacing: var(--tr-snug); }
+.display-lg { font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-tight); font-weight: var(--fw-bold); letter-spacing: var(--tr-snug); }
+.display-md { font-family: var(--font-display); font-size: 20px; line-height: 1.25; font-weight: var(--fw-semibold); letter-spacing: var(--tr-display); }
+.kpi-xl     { font-family: var(--font-display); font-size: var(--fs-kpi); line-height: 1; font-weight: var(--fw-bold); letter-spacing: var(--tr-display); font-variant-numeric: tabular-nums; }
+.kpi-md     { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1; font-weight: var(--fw-bold); letter-spacing: var(--tr-display); font-variant-numeric: tabular-nums; }
+.body-md  { font-size: var(--fs-body);    line-height: var(--lh-body); font-weight: var(--fw-regular); }
+.body-sm  { font-size: var(--fs-body-s);  line-height: 1.5;  font-weight: var(--fw-regular); }
+.body-xs  { font-size: var(--fs-caption); line-height: 1.4;  font-weight: var(--fw-regular); }
+.label-md { font-size: var(--fs-body-s);  line-height: 1.4;  font-weight: var(--fw-medium); }
+.label-sm { font-size: var(--fs-caption); line-height: 1.3;  font-weight: var(--fw-medium); }
+.eyebrow-t { font-size: var(--fs-eyebrow); line-height: 1.2; font-weight: var(--fw-semibold); letter-spacing: var(--tr-eyebrow); text-transform: uppercase; color: var(--muted); }
+.mono-sm  { font-family: var(--font-mono); font-size: var(--fs-caption); line-height: 1.3; font-weight: var(--fw-regular); }
+
+/* ─── Utilidades ─────────────────────────────────────────────── */
+.tnum     { font-variant-numeric: tabular-nums; }
+.ff-d     { font-family: var(--font-display); }
+.ff-m     { font-family: var(--font-mono); }
+.c-muted  { color: var(--muted); }
+.c-muted2 { color: var(--muted-2); }
+.c-pos    { color: var(--pos-ink); }
+.c-neg    { color: var(--neg-ink); }
+.c-warn   { color: var(--warn-ink); }
+.c-ink2   { color: var(--ink-2); }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nowrap   { white-space: nowrap; }

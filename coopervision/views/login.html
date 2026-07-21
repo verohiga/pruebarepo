@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión · CooperVision Iberia</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--space-6);
+    }
+
+    .login-outer { width: 100%; max-width: 420px; }
+
+    .login-card {
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .login-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-7);
+    }
+    .login-brand-mark {
+      width: 52px; height: 52px;
+      background: var(--ink); color: var(--bg);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 800;
+      letter-spacing: -.03em; flex-shrink: 0;
+    }
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 700;
+      letter-spacing: -.015em; line-height: 1.2;
+    }
+    .login-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .login-heading {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      letter-spacing: -.025em; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .login-eyebrow {
+      font-size: 12px; color: var(--muted);
+      margin-bottom: var(--space-7);
+    }
+
+    .login-fields { display: flex; flex-direction: column; gap: var(--space-4); }
+
+    .login-forgot {
+      display: block; text-align: right;
+      font-size: 12px; color: var(--muted);
+      text-decoration: none; margin-top: 6px;
+      cursor: pointer;
+      transition: color var(--dur-fast) var(--ease);
+    }
+    .login-forgot:hover { color: var(--ink-2); }
+
+    .login-cta {
+      margin-top: var(--space-6);
+      width: 100%; justify-content: center;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .login-footer {
+      display: flex; align-items: center;
+      justify-content: center; gap: 6px;
+      margin-top: var(--space-6);
+    }
+
+    .login-error {
+      display: none;
+      background: var(--neg-bg, #FFF1F2);
+      border: 1px solid color-mix(in srgb, var(--neg-ink, #C0152C) 20%, transparent);
+      border-radius: var(--radius-md);
+      padding: 10px var(--space-4);
+      font-size: 13px; color: var(--neg-ink, #C0152C);
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: var(--space-4);
+    }
+    .login-error.hidden { display: none !important; }
+
+    /* Spinner en botón */
+    @keyframes cpv-spin { to { transform: rotate(360deg); } }
+    .login-spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(0,0,0,.2);
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: cpv-spin .7s linear infinite;
+      display: none;
+    }
+    .btn-loading .login-spinner { display: block; }
+    .btn-loading .login-label { opacity: 0.6; }
+  </style>
+</head>
+<body>
+  <div class="login-outer">
+    <div class="card login-card">
+
+      <!-- Brand mark -->
+      <div class="login-brand">
+        <div class="login-brand-mark">CV</div>
+        <div>
+          <div class="login-title">CooperVision Iberia</div>
+          <div class="login-sub">BBDD Maestra de Ópticas</div>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="login-heading">Plataforma de Ópticas Iberia</h1>
+      <p class="login-eyebrow">Acceso interno</p>
+
+      <!-- Error (hidden by default) -->
+      <div class="login-error hidden" id="login-error" role="alert">
+        <iconify-icon icon="iconoir:warning-circle" width="14"></iconify-icon>
+        <span id="login-error-msg">Email o contraseña incorrectos.</span>
+      </div>
+
+      <!-- Fields -->
+      <div class="login-fields">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email</label>
+          <input class="input" id="login-email" type="email"
+            placeholder="nombre@coopervision.es" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-pwd">Contraseña</label>
+          <input class="input" id="login-pwd" type="password"
+            placeholder="••••••••" autocomplete="current-password">
+          <a href="#" class="login-forgot" id="forgot-link">¿Olvidaste tu contraseña?</a>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button class="btn btn-primary btn-lg login-cta" id="login-btn">
+        <span class="login-spinner"></span>
+        <span class="login-label">Iniciar sesión</span>
+      </button>
+
+      <!-- Footer Newno -->
+      <div class="login-footer">
+        <span class="brand-mark-newno"
+          style="width:16px;height:16px;font-size:9px;border-radius:4px;flex-shrink:0">n</span>
+        <span class="body-xs c-muted">Built by Newno</span>
+      </div>
+
+    </div><!-- .card -->
+  </div>
+
+  <script>
+    /* ── Login standalone · views/login.html
+       - Sin validación de credenciales (prototipo).
+       - Simula 800ms de latencia.
+       - Setea cpv_role='admin' y redirige a ../index.html#/
+    ── */
+
+    var btn      = document.getElementById('login-btn');
+    var emailEl  = document.getElementById('login-email');
+    var pwdEl    = document.getElementById('login-pwd');
+    var errorEl  = document.getElementById('login-error');
+    var forgot   = document.getElementById('forgot-link');
+
+    function showError(msg) {
+      errorEl.querySelector('#login-error-msg').textContent = msg;
+      errorEl.classList.remove('hidden');
+    }
+    function hideError() { errorEl.classList.add('hidden'); }
+
+    function doLogin(e) {
+      if (e) e.preventDefault();
+      hideError();
+      var email = emailEl.value.trim();
+      var pwd   = pwdEl.value.trim();
+      if (!email) { showError('Introduce tu email.'); emailEl.focus(); return; }
+      if (!pwd)   { showError('Introduce tu contraseña.'); pwdEl.focus(); return; }
+
+      btn.classList.add('btn-loading');
+      btn.disabled = true;
+
+      setTimeout(function () {
+        localStorage.setItem('cpv_role', 'admin');
+        localStorage.setItem('cpv_screen_state', 'default');
+        window.location.href = '../index.html#/';
+      }, 800);
+    }
+
+    btn.addEventListener('click', doLogin);
+    pwdEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(e); });
+    emailEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') { pwdEl.focus(); } });
+    emailEl.addEventListener('input', hideError);
+    pwdEl.addEventListener('input', hideError);
+
+    forgot.addEventListener('click', function (e) {
+      e.preventDefault();
+      alert('Contacta con el administrador del sistema para restablecer tu contraseña.');
+    });
+
+    /* Autofocus */
+    emailEl.focus();
+  </script>
+</body>
+</html>
