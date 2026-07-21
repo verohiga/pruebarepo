@@ -1,0 +1,39 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Channel colors" subtitle="Platform brand colors — LinkedIn · Meta · TikTok · Google · Bing · Salesforce" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .chip { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; }
+  .dot { width: 36px; height: 36px; border-radius: var(--r-full); display:flex;align-items:center;justify-content:center; font-size:10px;font-weight:700;color:#fff;letter-spacing:0.01em; }
+  .name { font-size: 11px; font-weight: 600; color: var(--fg2); font-family: var(--font-ui); }
+  .hex  { font-size: 10px; color: var(--fg4); font-family: var(--font-mono); margin-top: -4px; }
+  .google-dot { width:36px;height:36px;border-radius:99px;background:white;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:1px;flex-wrap:wrap;padding:6px;box-sizing:border-box; }
+  .g-sq { width:10px;height:10px;border-radius:2px; }
+  .divider { width: 1px; background: var(--line-2); margin: 0 6px; align-self: stretch; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="chip"><div class="dot" style="background:#0A66C2;">in</div><span class="name">LinkedIn</span><span class="hex">#0A66C2</span></div>
+  <div class="chip"><div class="dot" style="background:#0866FF;">f</div><span class="name">Meta</span><span class="hex">#0866FF</span></div>
+  <div class="chip"><div class="dot" style="background:#282A2D;">TT</div><span class="name">TikTok</span><span class="hex">#282A2D</span></div>
+  <div class="chip">
+    <div class="google-dot">
+      <div class="g-sq" style="background:#EA4335;"></div>
+      <div class="g-sq" style="background:#4285F4;"></div>
+      <div class="g-sq" style="background:#34A853;"></div>
+      <div class="g-sq" style="background:#FBBC05;"></div>
+    </div>
+    <span class="name">Google</span><span class="hex">multicolor</span>
+  </div>
+  <div class="chip"><div class="dot" style="background:#5E5E5E;">Bi</div><span class="name">Bing</span><span class="hex">#5E5E5E</span></div>
+  <div class="divider"></div>
+  <div class="chip"><div class="dot" style="background:#009FDD;">SF</div><span class="name">Salesforce</span><span class="hex">#009FDD</span></div>
+</div>
+<p style="margin:14px 0 0;font-size:11px;color:var(--fg4);font-family:var(--font-ui);">Uso: identidad de canal en chips, donuts y tablas. No redefinas estos colores.</p>
+</body>
+</html>

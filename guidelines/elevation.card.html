@@ -1,0 +1,40 @@
+<!-- @dsCard group="Spacing" viewport="700x200" name="Elevation" subtitle="e0 · e1 · e2 · e3 · e-hero — borders > shadows" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--gray-100); }
+  .row { display: flex; gap: 14px; align-items: flex-end; }
+  .card-demo { flex: 1; background: white; border-radius: var(--r-xl); padding: 14px 16px; }
+  .elabel { font-size: 10px; font-weight: 600; font-family: var(--font-mono); color: var(--fg4); margin-bottom: 4px; }
+  .etitle { font-size: 12px; font-weight: 600; color: var(--fg1); font-family: var(--font-display); }
+  .edesc  { font-size: 10px; color: var(--fg3); font-family: var(--font-mono); margin-top: 3px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="card-demo" style="box-shadow:none;border:1px solid var(--line-2);">
+    <div class="elabel">e0</div>
+    <div class="etitle">Base</div>
+    <div class="edesc">sin sombra</div>
+  </div>
+  <div class="card-demo" style="box-shadow:var(--shadow-e1);border:1px solid var(--line);">
+    <div class="elabel">e1 · cards</div>
+    <div class="etitle">Standard</div>
+    <div class="edesc">0 1px 0 rgba(.02)<br>0 1px 2px rgba(.04)</div>
+  </div>
+  <div class="card-demo" style="box-shadow:var(--shadow-e2);border:none;">
+    <div class="elabel">e2 · dropdowns</div>
+    <div class="etitle">Floating</div>
+    <div class="edesc">0 4px 12px rgba(.08)</div>
+  </div>
+  <div class="card-demo" style="box-shadow:var(--shadow-e3);border:none;">
+    <div class="elabel">e3 · modals</div>
+    <div class="etitle">Dialog</div>
+    <div class="edesc">0 12px 32px rgba(.12)</div>
+  </div>
+</div>
+</body>
+</html>

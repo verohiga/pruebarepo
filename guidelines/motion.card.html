@@ -1,0 +1,44 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Motion" subtitle="cubic-bezier(0.2,0,0,1) · 120 / 180 / 280ms — restrained, no bounce" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 12px; align-items: stretch; }
+  .chip { flex: 1; background: var(--gray-100); border: 1px solid var(--line); border-radius: var(--r-xl); padding: 14px 16px; display:flex;flex-direction:column;gap:6px; }
+  .dur  { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--fg1); letter-spacing: -0.01em; }
+  .name { font-size: 11px; font-weight: 600; color: var(--fg3); font-family: var(--font-ui); }
+  .use  { font-size: 10px; color: var(--fg4); font-family: var(--font-mono); }
+  .ease-vis { height: 3px; border-radius: 99px; background: linear-gradient(90deg, var(--accent) 0%, var(--accent-strong) 100%); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="chip">
+    <div class="dur">120ms</div>
+    <div class="name">--dur-fast</div>
+    <div class="use">button bg, nav hover</div>
+    <div class="ease-vis" style="width:40%;"></div>
+  </div>
+  <div class="chip">
+    <div class="dur">180ms</div>
+    <div class="name">--dur-base</div>
+    <div class="use">input focus, card transition</div>
+    <div class="ease-vis" style="width:60%;"></div>
+  </div>
+  <div class="chip">
+    <div class="dur">280ms</div>
+    <div class="name">--dur-slow</div>
+    <div class="use">modal open, sidebar toggle</div>
+    <div class="ease-vis" style="width:100%;"></div>
+  </div>
+  <div class="chip" style="flex:2;">
+    <div style="font-size:11px;font-weight:600;color:var(--fg3);font-family:var(--font-ui);">Easing canónico</div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--fg2);margin-top:2px;">cubic-bezier(0.2, 0, 0, 1)</div>
+    <div style="font-size:10px;color:var(--fg4);font-family:var(--font-ui);margin-top:4px;line-height:1.5;">Material standard-out · deceleración suave, sin bounce. Aplica a fondos, opacidades y posiciones.</div>
+  </div>
+</div>
+</body>
+</html>

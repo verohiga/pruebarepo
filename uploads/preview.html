@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>CPV × Newno · DS Preview v1.1</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/components.css">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+  .preview-wrap { max-width: 1080px; margin: 0 auto; padding: 40px 32px 80px; overflow: visible; }
+  .preview-section { margin-bottom: 48px; }
+  .preview-title {
+    font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted-2); margin: 0 0 20px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--line-2);
+  }
+  .preview-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+  .preview-row.top { align-items: flex-start; }
+  .preview-col { display: flex; flex-direction: column; gap: 8px; }
+  .preview-label { font-size: 10px; font-weight: 600; color: var(--muted-2); letter-spacing: .04em; text-transform: uppercase; font-family: var(--font-mono); }
+  .swatch { width: 48px; height: 32px; border-radius: var(--radius-md); border: 1px solid rgba(0,0,0,.06); }
+  .swatch-lg { width: 80px; height: 48px; border-radius: var(--radius-xl); }
+  .swatch-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
+  .swatch-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .swatch-item span { font-size: 9px; font-family: var(--font-mono); color: var(--muted); text-align: center; }
+  .preview-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; background: var(--bg); border-bottom: 1px solid var(--line);
+    margin-bottom: 0; position: sticky; top: 0; z-index: 200;
+  }
+  .preview-header-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .preview-header-sub { font-size: 12px; color: var(--muted); }
+  .type-row { display: flex; align-items: baseline; gap: 24px; padding: 10px 0; border-bottom: 1px solid var(--line-2); }
+  .type-meta { width: 100px; flex-shrink: 0; font-size: 10px; font-family: var(--font-mono); color: var(--muted-2); line-height: 1.5; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .w240 { width: 240px; }
+  .w320 { width: 320px; }
+</style>
+</head>
+<body>
+
+<!-- ── Sticky header ── -->
+<div class="preview-header">
+  <div>
+    <div class="preview-header-title">CPV × Newno · DS Preview</div>
+    <div class="preview-header-sub">Newno DS v1.1 · tokens.css + components.css · Solo revisión</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span class="pill pill-accent"><span class="pill-dot"></span>CSS listo para revisión</span>
+    <a href="index.html" class="btn btn-ghost btn-sm">← Ir al prototipo</a>
+  </div>
+</div>
+
+<div class="preview-wrap">
+
+  <!-- ══ COLORES ═══════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Colores</p>
+
+    <div class="preview-label" style="margin-bottom:10px">Acento + escala</div>
+    <div class="swatch-row" style="margin-bottom:20px">
+      <div class="swatch-item"><div class="swatch" style="background:#C5E817;width:80px;height:48px;border-radius:var(--radius-xl);"></div><span>--accent<br>#C5E817</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:rgba(197,232,23,.18);width:64px;height:40px;"></div><span>--accent-soft</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#3F4E07;width:48px;"></div><span>--accent-ink-deep</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#282A2D;width:48px;"></div><span>--accent-ink</span></div>
+    </div>
+
+    <div class="preview-label" style="margin-bottom:10px">Neutrales + líneas</div>
+    <div class="swatch-row" style="margin-bottom:20px">
+      <div class="swatch-item"><div class="swatch" style="background:#282A2D;"></div><span>--ink</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#4A4C4F;"></div><span>--ink-2</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#7E8084;"></div><span>--muted</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#A8AAAE;"></div><span>--muted-2</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#C5C8CC;"></div><span>--line</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#E7EAEE;"></div><span>--line-2</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#FFFFFF;border:1.5px solid #E7EAEE;"></div><span>--bg / --card</span></div>
+    </div>
+
+    <div class="preview-label" style="margin-bottom:10px">Semánticos</div>
+    <div class="swatch-row">
+      <div class="swatch-item"><div class="swatch" style="background:#10B981;"></div><span>--pos</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#D1FAE5;"></div><span>--pos-soft</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#047857;"></div><span>--pos-ink</span></div>
+      <div style="width:16px;"></div>
+      <div class="swatch-item"><div class="swatch" style="background:#F43F5E;"></div><span>--neg</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#FFE4E6;"></div><span>--neg-soft</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#BE123C;"></div><span>--neg-ink</span></div>
+      <div style="width:16px;"></div>
+      <div class="swatch-item"><div class="swatch" style="background:#FEF3C7;"></div><span>--warn-bg</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#92400E;"></div><span>--warn-ink</span></div>
+      <div style="width:16px;"></div>
+      <div class="swatch-item"><div class="swatch" style="background:#E5E7EB;"></div><span>--paused-bg</span></div>
+      <div class="swatch-item"><div class="swatch" style="background:#6B7280;"></div><span>--paused-ink</span></div>
+    </div>
+  </div>
+
+  <!-- ══ TIPOGRAFÍA ════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Tipografía · Outfit display / Inter body / JetBrains Mono</p>
+
+    <div class="type-row">
+      <div class="type-meta">display-xl<br>32 / 700 / −0.02em<br>Outfit</div>
+      <div class="display-xl">Resumen de actividad</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">display-lg<br>24 / 700 / −0.02em<br>Outfit</div>
+      <div class="display-lg">Base de datos de ópticas</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">display-md<br>20 / 600 / −0.01em<br>Outfit</div>
+      <div class="display-md">Detalle de óptica — Óptica San Carlos</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">kpi-xl<br>36 / 700 / tnum<br>Outfit</div>
+      <div class="kpi-xl">18.234</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">kpi-md<br>24 / 700 / tnum<br>Outfit</div>
+      <div class="kpi-md">3.142</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">body-md<br>14 / 400<br>Inter</div>
+      <div class="body-md">Óptica San Carlos · C/ Mayor 23, 28013 Madrid · +34 91 555 1234</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">body-sm<br>13 / 400<br>Inter</div>
+      <div class="body-sm">Valoración: 4.8 · 324 reseñas · Verificado · Operativo</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">body-xs<br>12 / 400<br>Inter</div>
+      <div class="body-xs c-muted">Datos sincronizados hace 12 días · Fuente: Outscraper</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">eyebrow-t<br>11 / 600 / +0.04em<br>Inter UPPERCASE</div>
+      <span class="eyebrow-t">ÓPTICAS TOTALES</span>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">mono-sm<br>12 / 400<br>JetBrains Mono</div>
+      <code class="mono-sm">ChIJ_madrid_001 · CPV-08234 · 40.4154, −3.7090</code>
+    </div>
+    <div class="type-row" style="border:none">
+      <div class="type-meta">eyebrow + dot</div>
+      <span class="eyebrow"><span class="dot"></span>INVERSIÓN TOTAL</span>
+    </div>
+  </div>
+
+  <!-- ══ BOTONES ═══════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Botones · 5 variantes + icon + tamaños sm/md/lg</p>
+
+    <div class="preview-row" style="margin-bottom:16px">
+      <span class="preview-label" style="width:60px">md</span>
+      <button class="btn btn-primary"><iconify-icon icon="iconoir:plus" width="14"></iconify-icon>Nueva campaña</button>
+      <button class="btn btn-ghost"><iconify-icon icon="iconoir:download" width="14"></iconify-icon>Exportar CSV</button>
+      <button class="btn btn-subtle">Filtros</button>
+      <button class="btn btn-destructive"><iconify-icon icon="iconoir:trash" width="14"></iconify-icon>Eliminar</button>
+      <button class="btn btn-link">Ver en changelog</button>
+      <button class="btn btn-icon"><iconify-icon icon="iconoir:more-horiz" width="16"></iconify-icon></button>
+    </div>
+    <div class="preview-row" style="margin-bottom:16px">
+      <span class="preview-label" style="width:60px">sm</span>
+      <button class="btn btn-primary btn-sm">Aplicar</button>
+      <button class="btn btn-ghost btn-sm">Cancelar</button>
+      <button class="btn btn-subtle btn-sm">Ver detalle</button>
+      <button class="btn btn-destructive btn-sm">Descartar</button>
+      <button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:xmark" width="14"></iconify-icon></button>
+    </div>
+    <div class="preview-row" style="margin-bottom:16px">
+      <span class="preview-label" style="width:60px">lg</span>
+      <button class="btn btn-primary btn-lg"><iconify-icon icon="iconoir:refresh-double" width="16"></iconify-icon>Sincronizar ahora</button>
+      <button class="btn btn-ghost btn-lg">Cancelar</button>
+    </div>
+    <div class="preview-row">
+      <span class="preview-label" style="width:60px">disabled</span>
+      <button class="btn btn-primary" disabled>Sin permisos</button>
+      <button class="btn btn-ghost" disabled>Exportar</button>
+      <button class="btn btn-destructive" disabled>Eliminar</button>
+    </div>
+  </div>
+
+  <!-- ══ PILLS ═════════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Pills · 5 semánticos + variante sm + dot</p>
+    <div class="preview-row">
+      <span class="pill pill-accent"><span class="pill-dot"></span>Cliente</span>
+      <span class="pill pill-pos">Vinculado</span>
+      <span class="pill pill-neg">Conflicto</span>
+      <span class="pill pill-warn">Override activo</span>
+      <span class="pill pill-paused">Sin asignar</span>
+      <span class="pill pill-neutral">Independiente</span>
+    </div>
+    <div class="preview-row" style="margin-top:8px">
+      <span class="pill pill-accent pill-sm"><span class="pill-dot"></span>Cliente</span>
+      <span class="pill pill-pos pill-sm">+12%</span>
+      <span class="pill pill-neg pill-sm">Conflicto</span>
+      <span class="pill pill-warn pill-sm">Corregido</span>
+      <span class="pill pill-paused pill-sm">Pausado</span>
+      <span class="pill pill-neutral pill-sm">CPV-08234</span>
+    </div>
+  </div>
+
+  <!-- ══ FORMULARIOS ════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Formularios · input · select · checkbox · radio · toggle · slider</p>
+    <div class="grid-2" style="max-width:700px; margin-bottom:20px">
+      <div class="form-group">
+        <label class="form-label">Nombre de óptica</label>
+        <input class="input" placeholder="Buscar por nombre…" value="">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Con icono prefijo</label>
+        <div class="input-wrap">
+          <span class="input-icon"><iconify-icon icon="iconoir:search" width="15"></iconify-icon></span>
+          <input class="input" placeholder="Buscar ópticas…">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Con error</label>
+        <input class="input error" value="dato-invalido">
+        <span class="form-error">Formato de teléfono incorrecto</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Deshabilitado</label>
+        <input class="input" placeholder="Sin acceso" disabled>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Provincia</label>
+        <select class="select">
+          <option>Todas las provincias</option>
+          <option selected>Madrid</option>
+          <option>Barcelona</option>
+          <option>Valencia</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Segmentación</label>
+        <select class="select select-sm">
+          <option>A — Premium</option>
+          <option>B — Estándar</option>
+          <option>C — Básico</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="preview-row" style="gap:24px;margin-bottom:16px">
+      <div class="preview-label">Checkbox</div>
+      <label class="checkbox-wrap"><input type="checkbox" class="checkbox" checked><span class="label-md">Cliente CooperVision</span></label>
+      <label class="checkbox-wrap"><input type="checkbox" class="checkbox"><span class="label-md">Mostrar no clientes</span></label>
+      <label class="checkbox-wrap"><input type="checkbox" class="checkbox" disabled><span class="label-md c-muted">Sin acceso</span></label>
+    </div>
+    <div class="preview-row" style="gap:24px;margin-bottom:16px">
+      <div class="preview-label">Radio</div>
+      <label class="radio-wrap"><input type="radio" class="radio" name="tipo" checked><span class="label-md">Todos</span></label>
+      <label class="radio-wrap"><input type="radio" class="radio" name="tipo"><span class="label-md">Clientes</span></label>
+      <label class="radio-wrap"><input type="radio" class="radio" name="tipo"><span class="label-md">No clientes</span></label>
+    </div>
+    <div class="preview-row" style="gap:24px;margin-bottom:16px">
+      <div class="preview-label">Toggle</div>
+      <label class="toggle-label">
+        <input type="checkbox" checked>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span class="toggle-text">Mostrar campañas Core</span>
+      </label>
+      <label class="toggle-label">
+        <input type="checkbox">
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span class="toggle-text">Mostrar campañas Miopía</span>
+      </label>
+    </div>
+    <div class="preview-row" style="gap:12px">
+      <div class="preview-label">Slider</div>
+      <div style="width:200px">
+        <input type="range" class="slider" min="0" max="5" step="0.5" value="3.5">
+      </div>
+      <span class="body-sm c-muted">Valoración mínima: 3.5 ★</span>
+    </div>
+  </div>
+
+  <!-- ══ CARDS + KPI ════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Cards · KPI · Eyebrow</p>
+
+    <div class="kpi-grid" style="margin-bottom:20px">
+      <div class="card">
+        <div class="eyebrow-t" style="margin-bottom:8px">ÓPTICAS TOTALES</div>
+        <div class="kpi-xl">18.234</div>
+        <div class="kpi-subtitle">52 provincias · España + Portugal</div>
+      </div>
+      <div class="card card-accent">
+        <div class="eyebrow" style="margin-bottom:8px"><span class="dot"></span>CLIENTES CPV</div>
+        <div class="kpi-xl" style="color:var(--accent-ink-deep)">3.142</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:6px">
+          <span class="kpi-delta pos"><iconify-icon icon="iconoir:arrow-up" width="10"></iconify-icon>+8.4%</span>
+          <span class="kpi-subtitle">vs mes anterior</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="eyebrow-t" style="margin-bottom:8px">NUEVOS (ÚLTIMA SYNC)</div>
+        <div class="kpi-xl">84</div>
+        <div class="kpi-subtitle">Sync: 10 may 2026</div>
+      </div>
+      <div class="card">
+        <div class="eyebrow-t" style="margin-bottom:8px">VALORACIÓN MEDIA</div>
+        <div class="kpi-xl">4.32</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:6px">
+          <span class="kpi-delta neg"><iconify-icon icon="iconoir:arrow-down" width="10"></iconify-icon>−0.04</span>
+          <span class="kpi-subtitle">clientes: 4.41</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="eyebrow-t">Card estándar</div>
+            <div class="display-md" style="margin-top:4px">Título de sección</div>
+          </div>
+          <button class="btn btn-icon"><iconify-icon icon="iconoir:more-horiz" width="16"></iconify-icon></button>
+        </div>
+        <div class="body-sm c-muted">Contenido secundario con texto en body-sm. Borde --line obligatorio sobre fondo blanco.</div>
+      </div>
+      <div class="card card-compact">
+        <div class="eyebrow-t" style="margin-bottom:6px">Card compacta</div>
+        <div class="body-sm">Padding reducido (space-5). Para widgets y panels secundarios.</div>
+      </div>
+      <div class="card card-accent">
+        <div class="eyebrow-t" style="margin-bottom:6px">Card accent (máx. 1 por vista)</div>
+        <div class="body-sm">Borde 1.5px solid --accent. Solo para el KPI principal o elemento destacado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TABLA DENSA ════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Tabla densa · 40px filas + variante ultra 32px</p>
+    <div class="table-wrap">
+      <div class="table-toolbar">
+        <div class="table-toolbar-left">
+          <div class="input-wrap search-bar">
+            <span class="input-icon"><iconify-icon icon="iconoir:search" width="15"></iconify-icon></span>
+            <input class="input input-sm" placeholder="Buscar ópticas…">
+          </div>
+          <div class="chips-row">
+            <span class="chip"><span class="chip-label">Madrid</span><button class="chip-remove"><iconify-icon icon="iconoir:xmark" width="10"></iconify-icon></button></span>
+            <span class="chip"><span class="chip-label">Cliente</span><button class="chip-remove"><iconify-icon icon="iconoir:xmark" width="10"></iconify-icon></button></span>
+          </div>
+        </div>
+        <div class="table-toolbar-right">
+          <button class="btn btn-ghost btn-sm"><iconify-icon icon="iconoir:filter" width="14"></iconify-icon>Filtros</button>
+          <button class="btn btn-ghost btn-sm"><iconify-icon icon="iconoir:download" width="14"></iconify-icon>Exportar CSV</button>
+        </div>
+      </div>
+      <table class="table-dense">
+        <thead>
+          <tr>
+            <th class="sortable sorted">Nombre <iconify-icon icon="iconoir:nav-arrow-up" width="12" class="sort-icon"></iconify-icon></th>
+            <th>Ciudad</th>
+            <th class="sortable">Valoración <iconify-icon icon="iconoir:nav-arrow-down" width="12" class="sort-icon"></iconify-icon></th>
+            <th>Estado</th>
+            <th>Cadena</th>
+            <th>Override</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="selected">
+            <td>Óptica San Carlos</td>
+            <td>Madrid</td>
+            <td>4.8 ★</td>
+            <td><span class="pill pill-accent pill-sm"><span class="pill-dot"></span>Cliente</span></td>
+            <td class="c-muted">—</td>
+            <td><iconify-icon icon="iconoir:edit-pencil" width="12" style="color:var(--warn-ink)"></iconify-icon></td>
+            <td><button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button></td>
+          </tr>
+          <tr>
+            <td>Visionlab Gran Vía</td>
+            <td>Madrid</td>
+            <td>4.2 ★</td>
+            <td><span class="pill pill-accent pill-sm"><span class="pill-dot"></span>Cliente</span></td>
+            <td class="body-sm">Visionlab</td>
+            <td></td>
+            <td><button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button></td>
+          </tr>
+          <tr>
+            <td>Multiópticas Atocha</td>
+            <td>Madrid</td>
+            <td>3.8 ★</td>
+            <td><span class="pill pill-paused pill-sm">Sin vincular</span></td>
+            <td class="body-sm">Multiópticas</td>
+            <td></td>
+            <td><button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button></td>
+          </tr>
+          <tr>
+            <td>Òptica Gràcia</td>
+            <td>Barcelona</td>
+            <td>4.9 ★</td>
+            <td><span class="pill pill-accent pill-sm"><span class="pill-dot"></span>Cliente</span></td>
+            <td class="c-muted">—</td>
+            <td></td>
+            <td><button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button></td>
+          </tr>
+          <tr>
+            <td>Alain Afflelou Diagonal</td>
+            <td>Barcelona</td>
+            <td>4.0 ★</td>
+            <td><span class="pill pill-neg pill-sm">Conflicto</span></td>
+            <td class="body-sm">Alain Afflelou</td>
+            <td></td>
+            <td><button class="btn btn-icon btn-sm"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination-wrap">
+        <div class="pagination-info">Mostrando 1–5 de 18.234</div>
+        <div class="pagination">
+          <button class="page-btn" disabled><iconify-icon icon="iconoir:nav-arrow-left" width="14"></iconify-icon></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <span class="page-ellipsis">…</span>
+          <button class="page-btn">912</button>
+          <button class="page-btn"><iconify-icon icon="iconoir:nav-arrow-right" width="14"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+
+    <p class="preview-label" style="margin:16px 0 8px">Ultra-densa (32px) — Changelog / Logs</p>
+    <div class="table-wrap">
+      <table class="table-dense table-ultra">
+        <thead>
+          <tr>
+            <th>Fecha</th><th>Tipo</th><th>Registro</th><th>Campo</th><th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono-sm">15/05/2026 10:32</td><td><span class="pill pill-warn pill-sm">Override</span></td><td class="mono-sm">ChIJ_madrid_001</td><td class="mono-sm">phone</td><td class="body-xs">Alex Sánchez-Brunete</td></tr>
+          <tr><td class="mono-sm">12/05/2026 16:18</td><td><span class="pill pill-warn pill-sm">Override</span></td><td class="mono-sm">ChIJ_bcn_003</td><td class="mono-sm">website</td><td class="body-xs">Carla Mandado</td></tr>
+          <tr><td class="mono-sm">10/05/2026 14:32</td><td><span class="pill pill-pos pill-sm">Sync</span></td><td class="c-muted mono-sm">—</td><td class="c-muted">—</td><td class="body-xs c-muted">Sistema</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ OVERLAYS: MODAL + DRAWER (demo static) ════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Overlays · Modal + Drawer (estáticos para preview)</p>
+    <div class="grid-2" style="max-width:900px;gap:24px">
+
+      <!-- Modal estático -->
+      <div>
+        <p class="preview-label" style="margin-bottom:10px">Modal (480px)</p>
+        <div class="modal" style="position:relative;transform:none;max-height:none;animation:none;max-width:none;">
+          <div class="modal-header">
+            <h2 class="modal-title">Sincronizar base de datos</h2>
+            <button class="btn btn-icon"><iconify-icon icon="iconoir:xmark" width="18"></iconify-icon></button>
+          </div>
+          <div class="modal-body">
+            Esta acción lanzará una sincronización completa desde Outscraper. El proceso puede durar entre 4 y 14 horas. Los datos actuales seguirán disponibles durante la sincronización.
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ghost">Cancelar</button>
+            <button class="btn btn-primary"><iconify-icon icon="iconoir:refresh-double" width="14"></iconify-icon>Sincronizar ahora</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drawer estático -->
+      <div>
+        <p class="preview-label" style="margin-bottom:10px">Drawer (480px, detalle V5)</p>
+        <div class="drawer" style="position:relative;height:280px;width:100%;animation:none;border:1px solid var(--line);border-radius:var(--radius-xl);">
+          <div class="drawer-header">
+            <div>
+              <div class="eyebrow-t">DETALLE ÓPTICA</div>
+              <h2 class="drawer-title" style="margin-top:4px">Óptica San Carlos</h2>
+            </div>
+            <button class="btn btn-icon"><iconify-icon icon="iconoir:xmark" width="18"></iconify-icon></button>
+          </div>
+          <div class="drawer-body">
+            <div class="tabs-list" style="margin-bottom:var(--space-5)">
+              <button class="tab-trigger active" data-active="true">Google</button>
+              <button class="tab-trigger">CPV</button>
+              <button class="tab-trigger">Estado</button>
+              <button class="tab-trigger">Historial</button>
+              <button class="tab-trigger">Mapa</button>
+            </div>
+            <div class="grid-2" style="gap:16px">
+              <div class="data-pair">
+                <span class="data-label">Teléfono</span>
+                <div class="override-wrap">
+                  <div class="override-row">
+                    <span class="data-value">+34 91 555 12 34</span>
+                    <span class="pill pill-warn pill-sm"><iconify-icon icon="iconoir:edit-pencil" width="10"></iconify-icon>Corregido</span>
+                  </div>
+                  <span class="override-meta">Valor original: +34 91 555 1234 · Alex S. · 15/05</span>
+                </div>
+              </div>
+              <div class="data-pair">
+                <span class="data-label">Valoración</span>
+                <span class="data-value">4.8 ★ (324 reseñas)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TOAST ══════════════════════════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Toast · 4 variantes</p>
+    <div style="display:flex;flex-direction:column;gap:8px;max-width:380px;">
+      <div class="toast toast-success">
+        <span class="toast-icon success"><iconify-icon icon="iconoir:check-circle" width="18"></iconify-icon></span>
+        <div class="toast-content"><div class="toast-title">Override aplicado</div><div class="toast-body">Teléfono actualizado correctamente · Óptica San Carlos</div></div>
+        <button class="toast-close"><iconify-icon icon="iconoir:xmark" width="14"></iconify-icon></button>
+      </div>
+      <div class="toast toast-error">
+        <span class="toast-icon error"><iconify-icon icon="iconoir:warning-circle" width="18"></iconify-icon></span>
+        <div class="toast-content"><div class="toast-title">Error de sincronización</div><div class="toast-body">La conexión con Outscraper falló. Inténtalo de nuevo.</div></div>
+        <button class="toast-close"><iconify-icon icon="iconoir:xmark" width="14"></iconify-icon></button>
+      </div>
+      <div class="toast toast-warn">
+        <span class="toast-icon warn"><iconify-icon icon="iconoir:warning-triangle" width="18"></iconify-icon></span>
+        <div class="toast-content"><div class="toast-title">23 conflictos sin resolver</div><div class="toast-body">Ve a Admin › Revisión para gestionarlos.</div></div>
+        <button class="toast-close"><iconify-icon icon="iconoir:xmark" width="14"></iconify-icon></button>
+      </div>
+      <div class="toast toast-info">
+        <span class="toast-icon info"><iconify-icon icon="iconoir:info-circle" width="18"></iconify-icon></span>
+        <div class="toast-content"><div class="toast-title">Sincronización en curso</div><div class="toast-body">Outscraper · Iniciada a las 02:00. Estimado: 10h.</div></div>
+        <button class="toast-close"><iconify-icon icon="iconoir:xmark" width="14"></iconify-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ LOADING + EMPTY + ERROR ═══════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Estados de datos · Loading skeleton · Empty · Error</p>
+    <div class="grid-3" style="gap:16px">
+      <div class="card">
+        <div class="card-head">
+          <div style="flex:1">
+            <div class="skeleton sk-text-sm" style="width:80px;margin-bottom:10px"></div>
+            <div class="skeleton sk-text" style="width:60px;height:36px;border-radius:var(--radius-md)"></div>
+          </div>
+        </div>
+        <div class="skeleton sk-text" style="width:100%;margin-top:8px"></div>
+        <div class="skeleton sk-text" style="width:70%;margin-top:6px"></div>
+        <div class="preview-label" style="margin-top:12px">Skeleton KPI card</div>
+      </div>
+      <div class="card">
+        <div class="empty-state" style="min-height:160px">
+          <iconify-icon icon="iconoir:database" width="32" class="empty-state-icon"></iconify-icon>
+          <h3 class="state-title">Sin resultados</h3>
+          <p class="state-body">No hay ópticas que coincidan con los filtros activos.</p>
+          <button class="btn btn-ghost btn-sm">Limpiar filtros</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="error-state" style="min-height:160px">
+          <iconify-icon icon="iconoir:warning-triangle" width="32" class="error-state-icon"></iconify-icon>
+          <h3 class="state-title">Error al cargar</h3>
+          <p class="state-body">No se pudo conectar con el servidor. Revisa tu conexión.</p>
+          <button class="btn btn-primary btn-sm"><iconify-icon icon="iconoir:refresh-double" width="14"></iconify-icon>Reintentar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BRAND MARKS + SIDEBAR MOCK ════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Brand marks + Sidebar rail mock</p>
+    <div class="preview-row top" style="gap:24px;align-items:flex-start">
+
+      <div>
+        <p class="preview-label" style="margin-bottom:10px">Brand marks</p>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div class="preview-col" style="align-items:center">
+            <div class="brand-mark-cpv">CV</div>
+            <span style="font-size:9px;color:var(--muted-2);font-family:var(--font-mono)">brand-mark-cpv</span>
+          </div>
+          <div class="preview-col" style="align-items:center">
+            <div class="brand-mark-newno">n</div>
+            <span style="font-size:9px;color:var(--muted-2);font-family:var(--font-mono)">brand-mark-newno</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="preview-label" style="margin-bottom:10px">Sidebar rail (64px)</p>
+        <div class="rail" style="min-height:520px;border:1px solid var(--line);border-radius:var(--radius-xl);overflow:visible">
+          <div class="rail-brand">
+            <div class="brand-mark-cpv">CV</div>
+            <div class="brand-mark-newno">n</div>
+          </div>
+          <div class="rail-nav">
+            <button class="nav-item on"><iconify-icon icon="iconoir:home-simple" width="20"></iconify-icon><span class="tip">Resumen</span></button>
+            <button class="nav-item"><iconify-icon icon="iconoir:graph-up" width="20"></iconify-icon><span class="tip">Business Intelligence</span></button>
+            <button class="nav-item"><iconify-icon icon="iconoir:map-pin" width="20"></iconify-icon><span class="tip">Mapa</span></button>
+            <button class="nav-item"><iconify-icon icon="iconoir:database" width="20"></iconify-icon><span class="tip">Base de datos</span></button>
+          </div>
+          <div class="rail-divider">
+            <div class="rail-divider-line"></div>
+
+          </div>
+          <div class="rail-nav">
+            <button class="nav-item"><iconify-icon icon="iconoir:clock-rotate-right" width="20"></iconify-icon><span class="tip">Changelog</span></button>
+            <button class="nav-item" style="position:relative">
+              <iconify-icon icon="iconoir:settings" width="20"></iconify-icon><span class="tip">Admin</span>
+            </button>
+          </div>
+
+          <div class="rail-spacer"></div>
+          <div class="rail-bottom">
+            <button class="nav-item" style="position:relative;background:none"><div class="avatar">AS</div><span class="tip">Mi perfil</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="preview-label" style="margin-bottom:10px">Topbar de prototipo (48px)</p>
+        <div class="proto-topbar" style="border: 1px solid var(--line); border-radius: var(--radius-xl); width: 711px">
+          <div class="proto-topbar-left">
+            <span class="proto-badge">PROTO</span>
+            <span class="proto-label">Rol</span>
+            <div class="role-toggle">
+              <button class="role-toggle-btn active" data-role="admin">Admin</button>
+              <button class="role-toggle-btn">User</button>
+            </div>
+            <span class="proto-label" style="margin-left:4px">Estado</span>
+            <div class="segmented">
+              <button class="segmented-btn active" data-state="default">Default</button>
+              <button class="segmented-btn" data-state="loading">Loading</button>
+              <button class="segmented-btn" data-state="empty">Empty</button>
+              <button class="segmented-btn" data-state="error">Error</button>
+            </div>
+          </div>
+          <div class="proto-topbar-right" style="overflow:hidden;flex-shrink:0">
+            <div class="dropdown-wrap">
+              <button class="avatar-btn">
+                <div class="avatar">AS</div>
+                <span class="avatar-name">Alex S.</span>
+                <iconify-icon icon="iconoir:nav-arrow-down" width="14" style="color:var(--muted)"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BANNER + OVERRIDE PATTERN ════════════════════════ -->
+  <div class="preview-section">
+    <p class="preview-title">Banner + Override inline pattern</p>
+    <div style="border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;margin-bottom:16px">
+      <div class="banner banner-info">
+        <iconify-icon icon="iconoir:refresh-double" width="16"></iconify-icon>
+        <span>Sincronización en curso — Outscraper. Iniciada a las 02:00. Estimado: 10h restantes.</span>
+        <button class="btn-link banner-close" style="font-size: 12px; border-color: rgba(0, 0, 0, 0)">Ver progreso</button>
+      </div>
+      <div class="banner banner-warn">
+        <iconify-icon icon="iconoir:warning-triangle" width="16"></iconify-icon>
+        <span><strong>23 conflictos sin resolver</strong> en la última sincronización.</span>
+        <a href="#" class="btn btn-ghost btn-sm banner-close" style="background-color: rgba(231, 234, 238, 0); border-color: rgba(197, 200, 204, 0); color: rgb(149, 64, 14)">Ir a Revisión</a>
+      </div>
+    </div>
+
+    <p class="preview-label" style="margin-bottom:10px">Override inline (V5 campo corregido)</p>
+    <div class="card" style="max-width:480px">
+      <div class="data-pair" style="margin-bottom:16px">
+        <span class="data-label">Teléfono</span>
+        <div class="override-wrap">
+          <div class="override-row">
+            <span class="data-value">+34 91 555 12 34</span>
+            <span class="pill pill-warn pill-sm"><iconify-icon icon="iconoir:edit-pencil" width="10"></iconify-icon>Corregido manualmente</span>
+          </div>
+          <span class="override-meta">Valor original: +34 91 555 1234 · por Alex Sánchez-Brunete · 15/05/2026</span>
+        </div>
+      </div>
+      <div class="data-pair">
+        <span class="data-label">Email</span>
+        <div class="override-wrap">
+          <div class="override-row">
+            <span class="data-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="345d5a525b745b44405d575547555a575546585b471a5147">[email&#160;protected]</a></span>
+            <span class="pill pill-warn pill-sm"><iconify-icon icon="iconoir:edit-pencil" width="10"></iconify-icon>Corregido manualmente</span>
+          </div>
+          <span class="override-meta">Valor original: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="147b64607d777567757a777566787b67547379757d783a777b79">[email&#160;protected]</a> · por Alex Sánchez-Brunete · 15/05/2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /preview-wrap -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

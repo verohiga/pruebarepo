@@ -1,0 +1,47 @@
+<!-- @dsCard group="Type" viewport="700x340" name="Display — Outfit" subtitle="Hero · H1 · H2 · H3 · KPI — tracking negativo, tabular-nums" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; align-items: baseline; gap: 24px; margin-bottom: 10px; border-bottom: 1px solid var(--line-2); padding-bottom: 10px; }
+  .row:last-child { border: none; margin: 0; padding: 0; }
+  .label { width: 80px; flex-shrink: 0; font-size: 10px; font-weight: 600; font-family: var(--font-mono); color: var(--fg4); letter-spacing: 0.02em; line-height: 1; padding-top: 4px; }
+  .spec  { width: 110px; flex-shrink: 0; font-size: 10px; color: var(--fg4); font-family: var(--font-mono); line-height: 1.6; padding-top: 4px; }
+  .sample { flex: 1; min-width: 0; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="label">HERO</div>
+    <div class="spec">54px / 700<br>−0.025em</div>
+    <div class="sample"><span style="font-family:var(--font-display);font-size:42px;font-weight:700;letter-spacing:-0.025em;line-height:1.05;color:var(--fg1);text-wrap:balance;">Full Stack Marketing.</span></div>
+  </div>
+  <div class="row">
+    <div class="label">H1</div>
+    <div class="spec">32px / 700<br>−0.02em</div>
+    <div class="sample"><span style="font-family:var(--font-display);font-size:32px;font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--fg1);">Resumen de campañas</span></div>
+  </div>
+  <div class="row">
+    <div class="label">H2</div>
+    <div class="spec">24px / 700<br>−0.02em</div>
+    <div class="sample"><span style="font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;color:var(--fg1);">Inversión por canal</span></div>
+  </div>
+  <div class="row">
+    <div class="label">H3</div>
+    <div class="spec">16px / 600<br>−0.01em</div>
+    <div class="sample"><span style="font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-0.01em;color:var(--fg1);">Campañas activas</span></div>
+  </div>
+  <div class="row">
+    <div class="label">KPI</div>
+    <div class="spec">36px / 700<br>tabular-nums</div>
+    <div class="sample" style="display:flex;gap:32px;align-items:baseline;">
+      <span style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:var(--fg1);">€1.28M</span>
+      <span style="font-family:var(--font-display);font-size:36px;font-weight:700;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:var(--fg1);">4.82×</span>
+      <span style="font-family:var(--font-display);font-size:30px;font-weight:700;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:var(--fg1);">2,184</span>
+    </div>
+  </div>
+</body>
+</html>

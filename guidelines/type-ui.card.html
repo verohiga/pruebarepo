@@ -1,0 +1,50 @@
+<!-- @dsCard group="Type" viewport="700x300" name="UI — Inter" subtitle="Body · Body-S · Caption · Eyebrow · Micro — sentence-case, no CAPS in headlines" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; align-items: center; gap: 20px; padding: 8px 0; border-bottom: 1px solid var(--line-2); }
+  .row:last-child { border: none; }
+  .label { width: 72px; flex-shrink: 0; font-size: 10px; font-weight: 600; font-family: var(--font-mono); color: var(--fg4); }
+  .spec  { width: 120px; flex-shrink: 0; font-size: 10px; color: var(--fg4); font-family: var(--font-mono); }
+  .sample { flex: 1; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="label">BODY</div>
+    <div class="spec">14px / 400</div>
+    <div class="sample"><span style="font-family:var(--font-ui);font-size:14px;font-weight:400;color:var(--fg1);line-height:1.5;text-wrap:pretty;">Tu mejor ROAS viene de LinkedIn pero solo recibe el 18% del presupuesto disponible.</span></div>
+  </div>
+  <div class="row">
+    <div class="label">BODY-S</div>
+    <div class="spec">13px / 500</div>
+    <div class="sample"><span style="font-family:var(--font-ui);font-size:13px;font-weight:500;color:var(--fg1);">Q2 · Lead-gen senior · LinkedIn · €48.210 · ROAS 5.2×</span></div>
+  </div>
+  <div class="row">
+    <div class="label">CAPTION</div>
+    <div class="spec">12px / 500</div>
+    <div class="sample"><span style="font-family:var(--font-ui);font-size:12px;font-weight:500;color:var(--fg3);">Datos sincronizados hace 4 min · Últimos 30 días</span></div>
+  </div>
+  <div class="row">
+    <div class="label">EYEBROW</div>
+    <div class="spec">11px / 600<br>UPPERCASE +0.04em</div>
+    <div class="sample"><span class="eyebrow"><span class="dot"></span>INVERSIÓN · ROAS MEDIO · CONVERSIONES</span></div>
+  </div>
+  <div class="row">
+    <div class="label">MICRO</div>
+    <div class="spec">10px / 500–600</div>
+    <div class="sample" style="display:flex;gap:12px;align-items:center;">
+      <span style="font-family:var(--font-ui);font-size:10px;font-weight:600;color:var(--fg4);">ACTIVO</span>
+      <span class="pill pill--accent" style="font-size:10px;">Activo</span>
+      <span class="pill pill--pos">+12.4%</span>
+      <span class="pill pill--neg">−3.1%</span>
+      <span class="pill pill--test">Test</span>
+      <span class="pill pill--paused">Pausado</span>
+    </div>
+  </div>
+</body>
+</html>

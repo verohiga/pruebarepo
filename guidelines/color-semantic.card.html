@@ -1,0 +1,42 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Semantic colors" subtitle="Pos · neg · warn · paused — with text tokens" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 12px; }
+  .group { flex: 1; }
+  .solid { height: 40px; border-radius: var(--r-lg) var(--r-lg) 0 0; }
+  .soft  { height: 40px; display:flex;align-items:center;padding-left:12px; font-size:11px;font-weight:600;letter-spacing:0.02em; }
+  .meta  { padding: 8px 12px; border: 1px solid var(--line-2); border-top:none; border-radius: 0 0 var(--r-lg) var(--r-lg); font-size:10px;font-family:var(--font-mono);font-weight:600; }
+  .meta b { display:block;color:var(--fg2); }
+  .meta span { color:var(--fg4); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="group">
+    <div class="solid" style="background:#10B981;"></div>
+    <div class="soft" style="background:#D1FAE5;color:#047857;">+12.4%</div>
+    <div class="meta"><b>pos / pos-soft</b><span>#10B981 / #D1FAE5 · text #047857</span></div>
+  </div>
+  <div class="group">
+    <div class="solid" style="background:#F43F5E;"></div>
+    <div class="soft" style="background:#FFE4E6;color:#BE123C;">−3.1%</div>
+    <div class="meta"><b>neg / neg-soft</b><span>#F43F5E / #FFE4E6 · text #BE123C</span></div>
+  </div>
+  <div class="group">
+    <div class="solid" style="background:#FEF3C7;border:1px solid #E7EAEE;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:600;color:#92400E;">Test</div>
+    <div class="soft" style="background:#FEF3C7;color:#92400E;border-top:1px solid #E7EAEE;">Experimento</div>
+    <div class="meta"><b>warn-bg / warn-ink</b><span>#FEF3C7 / #92400E · pruebas A/B</span></div>
+  </div>
+  <div class="group">
+    <div class="solid" style="background:#E5E7EB;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:600;color:#6B7280;">Pausado</div>
+    <div class="soft" style="background:#E5E7EB;color:#6B7280;">Campaña detenida</div>
+    <div class="meta"><b>paused-bg / paused-ink</b><span>#E5E7EB / #6B7280</span></div>
+  </div>
+</div>
+</body>
+</html>

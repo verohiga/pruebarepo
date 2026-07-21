@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CooperVision Iberia · BBDD Ópticas</title>
+
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"></script>
+
+  <style id="proto-glue">
+    /* ── Glue específico del prototipo (no forma parte del DS) ── */
+    #view-root { max-width: 1440px; margin: 0 auto; }
+    .view-stub { margin-top: var(--space-6); }
+
+    /* Visibilidad por rol: oculta zonas admin cuando rol = user */
+    body[data-role="user"] [data-admin-only] { display: none !important; }
+
+    /* Divisor DEV: rail-divider con etiqueta */
+    .rail-divider.is-dev .rail-divider-label { color: var(--muted-2); }
+
+    /* Wrapper relativo para el flyout de Admin */
+    .rail-admin { position: relative; width: 100%; display: flex; justify-content: center; }
+
+    /* Chrome off (login): oculta topbar prototipo y rail */
+    body[data-chrome="off"] .proto-topbar,
+    body[data-chrome="off"] .rail { display: none; }
+
+    /* Login placeholder */
+    .login-wrap { min-height: 100%; display: grid; place-items: center; padding: var(--space-8); }
+    .login-card { width: 380px; }
+    .login-brand { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-6); }
+
+    /* Stub KPI para estado loading */
+    .stub-kpi { display: flex; flex-direction: column; gap: var(--space-3); min-height: 86px; }
+  </style>
+</head>
+<body data-role="admin" data-screen-state="default" data-chrome="on">
+
+  <!-- ── Guard <1280px ── -->
+  <div class="min-width-guard">
+    <div>
+      <iconify-icon icon="iconoir:large-suitcase" width="32" style="color:var(--muted-2)"></iconify-icon>
+      <h2 class="state-title" style="margin-top:12px">Usa esta aplicación en un escritorio</h2>
+      <p class="state-body">La herramienta está diseñada para pantallas de 1280px o superiores.</p>
+    </div>
+  </div>
+
+  <!-- ── App shell ── -->
+  <div class="app-layout">
+
+    <!-- ════ Topbar de prototipo (48px) ════ -->
+    <div class="proto-topbar">
+      <div class="proto-topbar-left">
+        <span class="proto-badge">Proto</span>
+        <span class="proto-label">Rol</span>
+        <div class="role-toggle">
+          <button class="role-toggle-btn active" data-role="admin">Admin</button>
+          <button class="role-toggle-btn" data-role="user">User</button>
+        </div>
+        <span class="proto-label" style="margin-left:4px">Estado</span>
+        <div class="segmented">
+          <button class="segmented-btn active" data-state="default">Default</button>
+          <button class="segmented-btn" data-state="loading">Loading</button>
+          <button class="segmented-btn" data-state="empty">Empty</button>
+          <button class="segmented-btn" data-state="error">Error</button>
+        </div>
+      </div>
+      <div class="proto-topbar-right">
+        <div class="dropdown-wrap" id="avatar-wrap">
+          <button class="avatar-btn" id="avatar-btn">
+            <div class="avatar" id="avatar-initials">AS</div>
+            <span class="avatar-name" id="avatar-name">Usuario</span>
+            <iconify-icon icon="iconoir:nav-arrow-down" width="14" style="color:var(--muted)"></iconify-icon>
+          </button>
+          <div class="dropdown-menu" id="avatar-menu">
+            <div style="padding:8px 12px 6px">
+              <div class="label-md" id="avatar-menu-name" style="color:var(--ink)">Usuario</div>
+              <div class="body-xs c-muted" id="avatar-menu-email">—</div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#/perfil"><iconify-icon icon="iconoir:user" width="16"></iconify-icon>Mi perfil</a>
+            <a class="dropdown-item danger" href="#/login"><iconify-icon icon="iconoir:log-out" width="16"></iconify-icon>Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ Cuerpo: rail + área principal ════ -->
+    <div class="app-body">
+
+      <!-- ════ Sidebar rail (64px) ════ -->
+      <nav class="rail" aria-label="Navegación principal">
+        <div class="rail-brand">
+          <a class="brand-mark-cpv" href="#/" aria-label="CooperVision · inicio">CV</a>
+          <div class="brand-mark-newno" title="Built by Newno">n</div>
+        </div>
+
+        <div class="rail-nav">
+          <a class="nav-item" href="#/" data-nav="resumen"><iconify-icon icon="iconoir:home-simple" width="20"></iconify-icon><span class="tip">Resumen</span></a>
+          <a class="nav-item" href="#/bi" data-nav="bi"><iconify-icon icon="iconoir:graph-up" width="20"></iconify-icon><span class="tip">Business Intelligence</span></a>
+          <a class="nav-item" href="#/mapa" data-nav="mapa"><iconify-icon icon="iconoir:map-pin" width="20"></iconify-icon><span class="tip">Mapa</span></a>
+          <a class="nav-item" href="#/bbdd" data-nav="bbdd"><iconify-icon icon="iconoir:database" width="20"></iconify-icon><span class="tip">Base de datos</span></a>
+        </div>
+
+        <!-- Divisor ADMIN (solo admin) -->
+        <div class="rail-divider" data-admin-only>
+          <div class="rail-divider-line"></div>
+          <div class="rail-divider-label">Admin</div>
+        </div>
+
+        <div class="rail-nav" data-admin-only>
+          <a class="nav-item" href="#/changelog" data-nav="changelog"><iconify-icon icon="iconoir:clock-rotate-right" width="20"></iconify-icon><span class="tip">Changelog</span></a>
+          <div class="rail-admin">
+            <button class="nav-item" id="admin-nav" data-nav="admin" aria-haspopup="true" aria-expanded="false">
+              <iconify-icon icon="iconoir:settings" width="20"></iconify-icon><span class="tip">Admin</span>
+            </button>
+            <div class="admin-flyout" id="admin-flyout">
+              <div class="admin-flyout-header">Administración</div>
+              <a class="admin-flyout-item" href="#/admin/usuarios"><iconify-icon icon="iconoir:group" width="16"></iconify-icon>Usuarios</a>
+              <a class="admin-flyout-item" href="#/admin/operaciones"><iconify-icon icon="iconoir:refresh-double" width="16"></iconify-icon>Operaciones</a>
+              <a class="admin-flyout-item" href="#/admin/revision"><iconify-icon icon="iconoir:warning-circle" width="16"></iconify-icon>Revisión</a>
+              <a class="admin-flyout-item" href="#/admin/cadenas"><iconify-icon icon="iconoir:network-left" width="16"></iconify-icon>Cadenas</a>
+              <a class="admin-flyout-item" href="#/admin/logs"><iconify-icon icon="iconoir:scroll" width="16"></iconify-icon>Logs</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divisor DEV -->
+        <div class="rail-divider is-dev">
+          <div class="rail-divider-line"></div>
+          <div class="rail-divider-label">Dev</div>
+        </div>
+
+        <div class="rail-nav">
+          <a class="nav-item" href="#/styleguide" data-nav="styleguide"><iconify-icon icon="iconoir:design-nib" width="20"></iconify-icon><span class="tip">Styleguide</span></a>
+        </div>
+
+        <div class="rail-spacer"></div>
+
+        <div class="rail-bottom">
+          <a class="nav-item" href="#/perfil" data-nav="perfil" style="background:none" aria-label="Mi perfil">
+            <div class="avatar" id="rail-avatar">AS</div><span class="tip">Mi perfil</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- ════ Área principal ════ -->
+      <main class="main-content" id="view-root">
+        <!-- Render dinámico por el router (app.js) -->
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ── Toasts ── -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

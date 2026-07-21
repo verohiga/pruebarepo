@@ -1,0 +1,49 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Accent — Lime" subtitle="Primary lime #C5E818 + hover + scale" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 10px; align-items: stretch; }
+  .swatch { flex: 1; border-radius: var(--r-lg); overflow: hidden; }
+  .swatch-main { flex: 2; border-radius: var(--r-lg); overflow: hidden; }
+  .chip { height: 56px; }
+  .label { padding: 8px 12px; font-size: 10px; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.02em; border-top: 1px solid rgba(0,0,0,.06); }
+  .dot-demo { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg4); }
+  .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch-main">
+    <div class="chip" style="background:#C5E818;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-ui);font-size:12px;font-weight:600;color:#282A2D;letter-spacing:0.01em;">
+      <span class="dot"></span>Newno Lime · texto siempre #282A2D
+    </div>
+    <div class="label" style="color:var(--fg2)">#C5E818 · --accent · Flúor 600</div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#B9D50D;"></div>
+    <div class="label" style="color:var(--fg3)">#B9D50D<br>hover</div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#CDEC48;"></div>
+    <div class="label" style="color:var(--fg3)">#CDEC48<br>500</div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#E2F598;"></div>
+    <div class="label" style="color:var(--fg3)">#E2F598<br>300</div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:rgba(197,232,24,.18);border:1px solid var(--line-2);"></div>
+    <div class="label" style="color:var(--fg3)">18% alpha<br>soft</div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#F8FDE6;border:1px solid var(--line-2);"></div>
+    <div class="label" style="color:var(--fg3)">#F8FDE6<br>100</div>
+  </div>
+</div>
+<div class="dot-demo"><span class="dot"></span>eyebrow dot · glow 4px accent-soft</div>
+</body>
+</html>

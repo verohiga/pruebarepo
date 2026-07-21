@@ -1,0 +1,31 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Radius scale" subtitle="r-xs through r-full — max 14px for product cards" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 14px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { background: var(--gray-100); border: 1px solid var(--line); width: 60px; height: 60px; }
+  .label { text-align: center; }
+  .token { display: block; font-size: 10px; font-weight: 600; font-family: var(--font-mono); color: var(--fg4); }
+  .val   { display: block; font-size: 10px; font-family: var(--font-mono); color: var(--fg3); }
+  .use   { display: block; font-size: 9px; font-family: var(--font-ui); color: var(--fg4); }
+  .accent-box { background: var(--accent-soft); border: 1.5px solid var(--accent); }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="item"><div class="box" style="border-radius:3px;"></div><div class="label"><span class="token">r-xs</span><span class="val">3px</span><span class="use">bar chart</span></div></div>
+  <div class="item"><div class="box" style="border-radius:6px;"></div><div class="label"><span class="token">r-sm</span><span class="val">6px</span><span class="use">pills</span></div></div>
+  <div class="item"><div class="box" style="border-radius:8px;"></div><div class="label"><span class="token">r-md</span><span class="val">8px</span><span class="use">inputs sm</span></div></div>
+  <div class="item"><div class="box" style="border-radius:10px;"></div><div class="label"><span class="token">r-lg</span><span class="val">10px</span><span class="use">buttons/nav</span></div></div>
+  <div class="item accent-box" style="border-radius:14px;width:60px;height:60px;display:flex;align-items:center;justify-content:center;"><span style="font-size:9px;font-weight:600;color:var(--accent-deep);font-family:var(--font-mono);">max</span></div>
+  <div class="item" style="margin-left:-46px;margin-top:auto;"><div class="label"><span class="token">r-xl</span><span class="val">14px</span><span class="use" style="font-weight:700;color:var(--accent-deep);">cards · MAX</span></div></div>
+  <div class="item" style="margin-left:10px;"><div class="box" style="border-radius:30px;"></div><div class="label"><span class="token">r-2xl</span><span class="val">30px</span><span class="use">mobile bezel</span></div></div>
+  <div class="item"><div class="box" style="border-radius:9999px;"></div><div class="label"><span class="token">r-full</span><span class="val">9999px</span><span class="use">dots/avatars</span></div></div>
+</div>
+</body>
+</html>

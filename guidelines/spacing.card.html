@@ -1,0 +1,31 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Spacing scale" subtitle="4px base — space-1 through space-9" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+  .item { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bar-wrap { display: flex; align-items: flex-end; height: 48px; }
+  .bar { background: var(--accent); border-radius: 2px; width: 100%; }
+  .token { font-size: 10px; font-weight: 600; font-family: var(--font-mono); color: var(--fg4); }
+  .val   { font-size: 10px; font-family: var(--font-mono); color: var(--fg3); }
+  .use   { font-size: 9px; font-family: var(--font-ui); color: var(--fg4); line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:4px;background:var(--accent-300);"></div></div><div class="token">--space-1</div><div class="val">4px</div><div class="use">pill pad</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:8px;"></div></div><div class="token">--space-2</div><div class="val">8px</div><div class="use">icon gap</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:12px;"></div></div><div class="token">--space-3</div><div class="val">12px</div><div class="use">card gap</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:14px;"></div></div><div class="token">--space-4</div><div class="val">14px</div><div class="use">card grid gap</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:16px;"></div></div><div class="token">--space-5</div><div class="val">16px</div><div class="use">compact pad</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:20px;"></div></div><div class="token">--space-6</div><div class="val">20px</div><div class="use">card pad</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:26px;"></div></div><div class="token">--space-7</div><div class="val">26px</div><div class="use">main pad</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:32px;"></div></div><div class="token">--space-8</div><div class="val">32px</div><div class="use">section gap</div></div>
+  <div class="item"><div class="bar-wrap"><div class="bar" style="height:48px;"></div></div><div class="token">--space-9</div><div class="val">48px</div><div class="use">hero pad</div></div>
+</div>
+</body>
+</html>

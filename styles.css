@@ -1,0 +1,7 @@
+/* ============================================================
+   Newno Design System · styles.css
+   Entry point — @import only. Link this one file in your HTML:
+   <link rel="stylesheet" href="path/to/styles.css">
+   ============================================================ */
+
+@import "tokens/colors_and_type.css";

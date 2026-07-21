@@ -1,0 +1,43 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Newno Lab — product accents" subtitle="Markus · Luca · Bárbara · Haruka · Teresa · data-theme swap" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 10px; }
+  .card-lab { flex: 1; border-radius: var(--r-xl); overflow: hidden; border: 1px solid var(--line); }
+  .accent-bar { height: 48px; display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;letter-spacing:0.01em; }
+  .info { padding: 8px 10px; background: white; }
+  .pname { font-size: 12px; font-weight: 600; color: var(--fg1); font-family: var(--font-display); }
+  .phex  { font-size: 10px; color: var(--fg4); font-family: var(--font-mono); margin-top: 2px; }
+  .theme { font-size: 10px; color: var(--fg4); font-family: var(--font-mono); margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="card-lab">
+    <div class="accent-bar" style="background:#84FF58;color:#282A2D;">Markus</div>
+    <div class="info"><div class="pname">Markus</div><div class="phex">#84FF58</div><div class="theme">data-theme="markus"</div></div>
+  </div>
+  <div class="card-lab">
+    <div class="accent-bar" style="background:#FFCB26;color:#282A2D;">Luca</div>
+    <div class="info"><div class="pname">Luca</div><div class="phex">#FFCB26</div><div class="theme">data-theme="luca"</div></div>
+  </div>
+  <div class="card-lab">
+    <div class="accent-bar" style="background:#00F2A9;color:#282A2D;">Bárbara</div>
+    <div class="info"><div class="pname">Bárbara</div><div class="phex">#00F2A9</div><div class="theme">data-theme="barbara"</div></div>
+  </div>
+  <div class="card-lab">
+    <div class="accent-bar" style="background:#00F9FF;color:#282A2D;">Haruka</div>
+    <div class="info"><div class="pname">Haruka</div><div class="phex">#00F9FF</div><div class="theme">data-theme="haruka"</div></div>
+  </div>
+  <div class="card-lab">
+    <div class="accent-bar" style="background:#9D6DFB;color:#FFFFFF;">Teresa</div>
+    <div class="info"><div class="pname">Teresa</div><div class="phex">#9D6DFB</div><div class="theme">data-theme="teresa"</div></div>
+  </div>
+</div>
+<p style="margin:12px 0 0;font-size:11px;color:var(--fg4);">Un solo producto por vista. Teresa es el único con texto blanco sobre acento. Aplica el swap con <code style="font-family:var(--font-mono);font-size:10px;background:var(--gray-100);padding:1px 5px;border-radius:3px;">data-theme="&lt;nombre&gt;"</code> en <code style="font-family:var(--font-mono);font-size:10px;background:var(--gray-100);padding:1px 5px;border-radius:3px;">&lt;html&gt;</code>.</p>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Ink & Neutral ramp" subtitle="Gray 600→100 · all surface and text tokens" -->
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--bg); }
+  .row { display: flex; gap: 10px; }
+  .swatch { flex: 1; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line-2); }
+  .chip { height: 52px; }
+  .label { padding: 7px 10px; font-size: 10px; font-weight: 600; font-family: var(--font-mono); letter-spacing: 0.01em; background: white; }
+  .name { color: var(--fg2); display: block; }
+  .hex  { color: var(--fg4); display: block; margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="swatch">
+    <div class="chip" style="background:#282A2D;"></div>
+    <div class="label"><span class="name">--fg1</span><span class="hex">#282A2D</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#4A4C4F;"></div>
+    <div class="label"><span class="name">--fg2</span><span class="hex">#4A4C4F</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#7E8084;"></div>
+    <div class="label"><span class="name">--fg3</span><span class="hex">#7E8084</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#A8AAAE;"></div>
+    <div class="label"><span class="name">--fg4</span><span class="hex">#A8AAAE</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#C5C8CC;"></div>
+    <div class="label"><span class="name">--line</span><span class="hex">#C5C8CC</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#E7EAEE;"></div>
+    <div class="label"><span class="name">--line-2</span><span class="hex">#E7EAEE</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#F1F2F2;"></div>
+    <div class="label"><span class="name">--gray-100</span><span class="hex">#F1F2F2</span></div>
+  </div>
+  <div class="swatch">
+    <div class="chip" style="background:#FFFFFF; border-bottom:1px solid var(--line-2);"></div>
+    <div class="label"><span class="name">--bg / --card</span><span class="hex">#FFFFFF</span></div>
+  </div>
+</div>
+</body>
+</html>
